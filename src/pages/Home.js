@@ -2,6 +2,8 @@ import React from 'react'
 import Hero from '../components/Hero'
 import FilmRoll from '../components/FilmRoll'
 import FeaturesSection from '../components/FeaturesSection'
+import ServicesSection from '../components/ServicesSection'
+import ScrollSection from '../components/ScrollSection'
 
 const Home = () => {
   return (
@@ -9,6 +11,9 @@ const Home = () => {
       <Hero />
       <FilmRoll />
       <FeaturesSection />
+      <ServicesSection />
+      <ScrollSection />
+      <ServicesSection />
     </div>
   )
 }

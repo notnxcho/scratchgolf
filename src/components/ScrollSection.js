@@ -1,4 +1,4 @@
-import SectionHeader from "./SectionHeader"
+// import SectionHeader from "./SectionHeader"
 import Trackman from "../assets/trackman.png"
 import Button from "./Button"
 import ArrowDiagonal from "./icons/ArrowDiagonal"

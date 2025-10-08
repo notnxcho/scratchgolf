@@ -3,6 +3,7 @@ import Hero from '../components/Hero'
 import FilmRoll from '../components/FilmRoll'
 import FeaturesSection from '../components/FeaturesSection'
 import ServicesSection from '../components/ServicesSection'
+import PlansSection from '../components/PlansSection'
 import ScrollSection from '../components/ScrollSection'
 
 const Home = () => {
@@ -13,7 +14,7 @@ const Home = () => {
       <FeaturesSection />
       <ServicesSection />
       <ScrollSection />
-      <ServicesSection />
+      <PlansSection />
     </div>
   )
 }

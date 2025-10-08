@@ -5,6 +5,7 @@ import FeaturesSection from '../components/FeaturesSection'
 import ServicesSection from '../components/ServicesSection'
 import PlansSection from '../components/PlansSection'
 import ScrollSection from '../components/ScrollSection'
+import GradualBlur from '../components/reactbits/GradualBlur'
 
 const Home = () => {
   return (
@@ -15,6 +16,16 @@ const Home = () => {
       <ServicesSection />
       <ScrollSection />
       <PlansSection />
+      <GradualBlur
+        target="page"
+        position="bottom"
+        height="6rem"
+        strength={2}
+        divCount={4}
+        curve="bezier"
+        exponential={true}
+        opacity={1}
+      />
     </div>
   )
 }

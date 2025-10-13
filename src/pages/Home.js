@@ -1,4 +1,5 @@
 import React from 'react'
+import SEO from '../components/SEO'
 import Hero from '../components/Hero'
 import FilmRoll from '../components/FilmRoll'
 import FeaturesSection from '../components/FeaturesSection'
@@ -6,12 +7,15 @@ import ServicesSection from '../components/ServicesSection'
 import PlansSection from '../components/PlansSection'
 import ScrollSection from '../components/ScrollSection'
 import TestimonialsSection from '../components/TestimonialsSection'
+import ContactSection from '../components/ContactSection'
+import FAQSection from '../components/FAQSection'
 import GradualBlur from '../components/reactbits/GradualBlur'
 import Footer from '../components/Footer'
 
 const Home = () => {
   return (
     <div className='w-screen min-h-screen flex flex-col items-center bg-[#f8f8f8]'>
+      <SEO />
       <Hero />
       <FilmRoll />
       <FeaturesSection />
@@ -19,6 +23,8 @@ const Home = () => {
       <ScrollSection />
       <PlansSection />
       <TestimonialsSection />
+      <ContactSection />
+      <FAQSection />
       <Footer />
       <GradualBlur
         target="page"

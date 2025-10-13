@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
 import SplitText from './reactbits/SplitText'
+import SectionHeader from './SectionHeader'
 
 const TestimonialContent = ({ testimonial, useSplitText = false, isCurrent = false }) => {
   return (
     <>
       {/* Quote section */}
       <div className="flex-1 mb-6">
-        <div className="mb-6 mt-3">
+        <div className="mb-6">
           <svg width="40" height="30" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 13.2203C0 10.678 7.08861 0 7.08861 0H15.9494C15.9494 0 10.3797 10.1695 9.62025 11.1864C8.86076 12.2034 5.56962 12.9661 6.07595 14.2373C6.58228 15.5085 7.8481 13.7288 11.8987 13.7288C15.9494 13.7288 16.2025 13.7288 16.2025 13.7288V30H0V13.2203Z" fill="#1C1C1C"></path>
             <path d="M23.7975 13.2203C23.7975 10.678 30.8861 0 30.8861 0H39.7468C39.7468 0 34.1772 10.1695 33.4177 11.1864C32.6582 12.2034 29.3671 12.9661 29.8734 14.2373C30.3797 15.5085 31.6456 13.7288 35.6962 13.7288C39.7468 13.7288 40 13.7288 40 13.7288V30H23.7975V13.2203Z" fill="#1C1C1C"></path>
@@ -16,7 +17,7 @@ const TestimonialContent = ({ testimonial, useSplitText = false, isCurrent = fal
           <SplitText
             key={`${testimonial.id}-${isCurrent}`}
             text={testimonial.quote}
-            className="text-[28px] font-semibold text-left"
+            className="text-[24px] lg:text-[28px] font-semibold text-left"
             delay={40}
             duration={0.6}
             ease="power3.out"
@@ -28,7 +29,7 @@ const TestimonialContent = ({ testimonial, useSplitText = false, isCurrent = fal
             textAlign="left"
           />
         ) : (
-          <p className="text-[28px] font-semibold text-left">{testimonial.quote}</p>
+          <p className="text-[24px] lg:text-[28px] font-semibold text-left">{testimonial.quote}</p>
         )}
       </div>
       
@@ -135,12 +136,13 @@ const TestimonialsSection = () => {
   }
 
   return (
-    <section className="w-screen py-20 bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Members Say</h2>
-          <p className="text-lg text-gray-600">Hear from our community of passionate golfers</p>
-        </div>
+    <section className="w-screen py-12 bg-gradient-to-b from-[#fff] to-[#f8f8f8]">
+      <div className="max-w-4xl gap-11 mx-auto px-4 flex flex-col items-center justify-center">
+        <SectionHeader 
+          title="Take it from our clients" 
+          description="What our community of passionate golfers say about us" 
+          theme="light" 
+        />
         
         <div 
           className="relative"
@@ -148,7 +150,7 @@ const TestimonialsSection = () => {
           onMouseLeave={() => setIsHovered(false)}
         >
           {/* Static card container */}
-          <div className="bg-white rounded-lg shadow-sm p-4 lg:p-8 relative overflow-hidden testimonial-container">
+          <div className="bg-white rounded-lg shadow-[0_12px_24px_0_rgba(0,0,0,0.04)] p-4 lg:p-8 relative overflow-hidden testimonial-container">
             {/* Hidden content for height calculation */}
             <TestimonialHeightCalc testimonial={testimonials[currentIndex]} />
             

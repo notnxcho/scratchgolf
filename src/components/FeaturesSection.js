@@ -33,7 +33,7 @@ const FeaturesSection = () => {
                     <div className="hidden xl:block">
                         <Course/>
                     </div>
-                    <Card title={"Expert Golf Instruction"} description={"Train with certified professionals for skill improvement and fitness"} />
+                    <Card title={"Precision Club Fitting"} description={"Give your whole set of clubs a 720° optimizations from club head to shaft to grip"} />
                     <div className="xl:hidden block">
                         <Course/>
                     </div>

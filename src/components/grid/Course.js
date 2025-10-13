@@ -13,7 +13,7 @@ const Course = () => {
             </div>
             
             {/* Right Section - Golf Course Illustration */}
-            <div className="flex pt-6 px-6 lg:pr-6 basis-1/2 min-h-[160px] relative">
+            <div className="flex pt-6 px-6 lg:pr-6 basis-1/2 min-h-[240px] relative">
                 <div
                     className="absolute top-6 right-6"
                     style={{

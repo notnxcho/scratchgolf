@@ -53,7 +53,7 @@ const PlansSection = () => {
             />
             
             {/* Plans Grid */}
-            <div className="w-full max-w-[1200px] px-4 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
+            <div className="w-full max-w-[1200px] px-4 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 lg:gap-6">
                 {plans.map((plan, index) => (
                     <PlanCard
                         key={index}

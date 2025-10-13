@@ -13,11 +13,13 @@ const FilmRoll = () => {
     const [overlayIndex, setOverlayIndex] = useState(0)
     
     const containerRef = useRef(null)
-    const originalImages = [venue1, venue2]
+    const animationRef = useRef(null)
     
-    // Create infinite loop with duplicates
+    // Create extended array for infinite loop
+    const originalImages = [venue1, venue2]
     const images = [...originalImages, ...originalImages, ...originalImages, ...originalImages]
-    const singleSetWidth = 600 + 16 // 600px width + 16px gap
+    const imageWidth = 600 + 16 // 600px width + 16px gap
+    const singleSetWidth = originalImages.length * imageWidth
     
     // Simple scroll effect
     useEffect(() => {
@@ -78,19 +80,36 @@ const FilmRoll = () => {
         }, 100)
     }
     
-    // Infinite scroll logic
+    // RequestAnimationFrame infinite scroll
     useEffect(() => {
-        const totalTranslateX = scrollTranslateX + dragTranslateX
+        const animate = () => {
+            setDragTranslateX(prev => {
+                const newPosition = prev + 0.5 // Slow continuous movement
+                
+                // Reset to beginning when we've moved past one complete set
+                if (newPosition > singleSetWidth) {
+                    return newPosition - singleSetWidth
+                }
+                // Reset to end when we've moved past one complete set in reverse
+                else if (newPosition < -singleSetWidth) {
+                    return newPosition + singleSetWidth
+                }
+                
+                return newPosition
+            })
+            
+            animationRef.current = requestAnimationFrame(animate)
+        }
         
-        // Reset to beginning when we've scrolled past the first set
-        if (totalTranslateX > singleSetWidth) {
-            setDragTranslateX(prev => prev - singleSetWidth)
+        // Start animation
+        animationRef.current = requestAnimationFrame(animate)
+        
+        return () => {
+            if (animationRef.current) {
+                cancelAnimationFrame(animationRef.current)
+            }
         }
-        // Reset to end when we've scrolled past the last set
-        else if (totalTranslateX < -singleSetWidth) {
-            setDragTranslateX(prev => prev + singleSetWidth)
-        }
-    }, [scrollTranslateX, dragTranslateX, singleSetWidth])
+    }, [singleSetWidth])
     
     // Mouse events
     const onMouseDown = (e) => {

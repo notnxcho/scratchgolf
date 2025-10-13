@@ -24,3 +24,20 @@ code {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Testimonial height calculation */
+.testimonial-container {
+  position: relative;
+}
+
+.testimonial-height-calc {
+  visibility: hidden;
+  pointer-events: none;
+  z-index: -1;
+  display: flex;
+}
+
+.testimonial-height-calc > div {
+  position: relative;
+  width: 100%;
+}

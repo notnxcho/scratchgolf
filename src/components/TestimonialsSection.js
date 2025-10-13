@@ -1,54 +1,182 @@
-import React from 'react'
-import ScrollStack, { ScrollStackItem } from './reactbits/ScrollStack'
+import React, { useState, useEffect, useRef } from 'react'
+import SplitText from './reactbits/SplitText'
+
+const TestimonialContent = ({ testimonial, useSplitText = false, isCurrent = false }) => {
+  return (
+    <>
+      {/* Quote section */}
+      <div className="flex-1 mb-6">
+        <div className="mb-6 mt-3">
+          <svg width="40" height="30" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 13.2203C0 10.678 7.08861 0 7.08861 0H15.9494C15.9494 0 10.3797 10.1695 9.62025 11.1864C8.86076 12.2034 5.56962 12.9661 6.07595 14.2373C6.58228 15.5085 7.8481 13.7288 11.8987 13.7288C15.9494 13.7288 16.2025 13.7288 16.2025 13.7288V30H0V13.2203Z" fill="#1C1C1C"></path>
+            <path d="M23.7975 13.2203C23.7975 10.678 30.8861 0 30.8861 0H39.7468C39.7468 0 34.1772 10.1695 33.4177 11.1864C32.6582 12.2034 29.3671 12.9661 29.8734 14.2373C30.3797 15.5085 31.6456 13.7288 35.6962 13.7288C39.7468 13.7288 40 13.7288 40 13.7288V30H23.7975V13.2203Z" fill="#1C1C1C"></path>
+          </svg>
+        </div>
+        {useSplitText ? (
+          <SplitText
+            key={`${testimonial.id}-${isCurrent}`}
+            text={testimonial.quote}
+            className="text-[28px] font-semibold text-left"
+            delay={40}
+            duration={0.6}
+            ease="power3.out"
+            splitType="words"
+            from={{ opacity: 0, y: 16 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            rootMargin="-100px"
+            textAlign="left"
+          />
+        ) : (
+          <p className="text-[28px] font-semibold text-left">{testimonial.quote}</p>
+        )}
+      </div>
+      
+      {/* Bottom section */}
+      <div className="pt-3 lg:pt-6 mb-2 border-t border-gray-100">
+        <div className="flex items-center justify-between">
+          <div>
+            <h4 className="font-bold text-gray-900 text-lg">{testimonial.name}</h4>
+            <p className="text-gray-600 text-sm">{testimonial.occupation}</p>
+          </div>
+          <div className="text-right">
+            <p className="text-gray-500 text-sm">{testimonial.skillLevel}</p>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+const TestimonialCard = ({ testimonial, isVisible, isCurrent }) => {
+  return (
+    <div
+      className={`absolute inset-0 p-4 lg:p-8 flex flex-col transition-all duration-700 ease-in-out ${
+        isCurrent
+          ? 'opacity-100 translate-x-0'
+          : isVisible
+          ? 'opacity-0 -translate-x-full'
+          : 'opacity-0 translate-x-full'
+      }`}
+    >
+      <TestimonialContent testimonial={testimonial} useSplitText={true} isCurrent={isCurrent} />
+    </div>
+  )
+}
+
+const TestimonialHeightCalc = ({ testimonial }) => {
+  return (
+    <div className="testimonial-height-calc">
+      <div className="flex flex-col">
+        <TestimonialContent testimonial={testimonial} useSplitText={false} />
+      </div>
+    </div>
+  )
+}
+
 
 const TestimonialsSection = () => {
-  // const testimonials = [
-  //   {
-  //     id: 1,
-  //     quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //     name: "Sarah Mitchell",
-  //     occupation: "Marketing Director",
-  //     skillLevel: "Handicap 12"
-  //   },
-  //   {
-  //     id: 2,
-  //     quote: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-  //     name: "Michael Chen",
-  //     occupation: "Software Engineer",
-  //     skillLevel: "Handicap 8"
-  //   },
-  //   {
-  //     id: 3,
-  //     quote: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-  //     name: "Emily Rodriguez",
-  //     occupation: "Financial Analyst",
-  //     skillLevel: "Handicap 15"
-  //   }
-  // ]
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
+  const intervalRef = useRef(null)
+
+  const testimonials = [
+    {
+      id: 1,
+      quote: "Really helpful and friendly staff. The simulators are great and the training is helpful.",
+      name: "Sarah Mitchell",
+      occupation: "Marketing Director",
+      skillLevel: "Handicap 12"
+    },
+    {
+      id: 2,
+      quote: "I noticed a significant improvement in my game after just a few sessions.",
+      name: "Michael Chen",
+      occupation: "Software Engineer",
+      skillLevel: "Handicap 8"
+    },
+    {
+      id: 3,
+      quote: "I love the training sessions. They are really helpful and the trainers are great.",
+      name: "Emily Rodriguez",
+      occupation: "Financial Analyst",
+      skillLevel: "Handicap 15"
+    }
+  ]
+
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (!isHovered) {
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => 
+          prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+        )
+      }, 4000) // Change testimonial every 4 seconds
+    } else {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
+    }
+  }, [isHovered, testimonials.length])
+
+  const handleDotClick = (index) => {
+    setCurrentIndex(index)
+    // Reset the auto-scroll timer when manually navigating
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current)
+    }
+  }
 
   return (
     <section className="w-screen py-20 bg-gray-50">
       <div className="max-w-4xl mx-auto px-4">
-        <ScrollStack useWindowScroll={true}>
-          <ScrollStackItem>
-            <div className="p-8 bg-white rounded-lg shadow-sm">
-              <h2 className="text-2xl font-bold mb-4">Card 1</h2>
-              <p className="text-gray-600">This is the first card in the stack</p>
-            </div>
-          </ScrollStackItem>
-          <ScrollStackItem>
-            <div className="p-8 bg-white rounded-lg shadow-sm">
-              <h2 className="text-2xl font-bold mb-4">Card 2</h2>
-              <p className="text-gray-600">This is the second card in the stack</p>
-            </div>
-          </ScrollStackItem>
-          <ScrollStackItem>
-            <div className="p-8 bg-white rounded-lg shadow-sm">
-              <h2 className="text-2xl font-bold mb-4">Card 3</h2>
-              <p className="text-gray-600">This is the third card in the stack</p>
-            </div>
-          </ScrollStackItem>
-        </ScrollStack>
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Members Say</h2>
+          <p className="text-lg text-gray-600">Hear from our community of passionate golfers</p>
+        </div>
+        
+        <div 
+          className="relative"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {/* Static card container */}
+          <div className="bg-white rounded-lg shadow-sm p-4 lg:p-8 relative overflow-hidden testimonial-container">
+            {/* Hidden content for height calculation */}
+            <TestimonialHeightCalc testimonial={testimonials[currentIndex]} />
+            
+            {/* Visible sliding content */}
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard
+                key={testimonial.id}
+                testimonial={testimonial}
+                isCurrent={index === currentIndex}
+                isVisible={index < currentIndex}
+              />
+            ))}
+          </div>
+          
+          <div className="flex justify-center mt-8 space-x-2">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handleDotClick(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentIndex 
+                    ? 'bg-gray-900 scale-125' 
+                    : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

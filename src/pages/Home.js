@@ -5,7 +5,7 @@ import FeaturesSection from '../components/FeaturesSection'
 import ServicesSection from '../components/ServicesSection'
 import PlansSection from '../components/PlansSection'
 import ScrollSection from '../components/ScrollSection'
-// import TestimonialsSection from '../components/TestimonialsSection'
+import TestimonialsSection from '../components/TestimonialsSection'
 import GradualBlur from '../components/reactbits/GradualBlur'
 import Footer from '../components/Footer'
 
@@ -18,7 +18,7 @@ const Home = () => {
       <ServicesSection />
       <ScrollSection />
       <PlansSection />
-      {/* <TestimonialsSection /> */}
+      <TestimonialsSection />
       <Footer />
       <GradualBlur
         target="page"

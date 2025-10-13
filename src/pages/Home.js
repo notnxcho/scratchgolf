@@ -1,5 +1,6 @@
 import React from 'react'
 import SEO from '../components/SEO'
+import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import FilmRoll from '../components/FilmRoll'
 import FeaturesSection from '../components/FeaturesSection'
@@ -16,6 +17,7 @@ const Home = () => {
   return (
     <div className='w-screen min-h-screen flex flex-col items-center bg-[#f8f8f8]'>
       <SEO />
+      <Navbar />
       <Hero />
       <FilmRoll />
       <FeaturesSection />

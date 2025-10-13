@@ -9,13 +9,13 @@ const ScrollSection = () => {
             {/* <SectionHeader title="Scroll Section" description="Scroll Section" theme="dark" /> */}
             
             {/* Two column layout */}
-            <div className="w-full max-w-[1080px] px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-                {/* Left column - Course image */}
-                <div className="flex flex-col items-center">
+            <div className="w-full max-w-[1080px] px-4 grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-16">
+                {/* Left column - Trackman image */}
+                <div className="flex flex-col items-center -mb-12 lg:mb-0">
                     <img 
                         src={Trackman} 
                         alt="Golf Course" 
-                        className="w-full h-[600px] max-h-screen object-contain max-w-lg sticky top-24"
+                        className="w-full h-auto lg:h-[600px] max-h-screen object-contain max-w-lg sticky top-24"
                     />
                 </div>
                 

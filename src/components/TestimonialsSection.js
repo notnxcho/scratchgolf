@@ -80,6 +80,8 @@ const TestimonialsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
   const intervalRef = useRef(null)
+  const touchStartX = useRef(null)
+  const touchEndX = useRef(null)
 
   const testimonials = [
     {
@@ -135,8 +137,43 @@ const TestimonialsSection = () => {
     }
   }
 
+  // Touch event handlers for swipe functionality
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return
+    
+    const distance = touchStartX.current - touchEndX.current
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+
+    if (isLeftSwipe && currentIndex < testimonials.length - 1) {
+      // Swipe left - go to next testimonial
+      setCurrentIndex(currentIndex + 1)
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
+    } else if (isRightSwipe && currentIndex > 0) {
+      // Swipe right - go to previous testimonial
+      setCurrentIndex(currentIndex - 1)
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
+    }
+
+    // Reset touch values
+    touchStartX.current = null
+    touchEndX.current = null
+  }
+
   return (
-    <section className="w-screen py-12 bg-gradient-to-b from-[#fff] to-[#f8f8f8]">
+    <section className="w-screen py-20 lg:py-[120px] bg-gradient-to-b from-[#fff] to-[#f8f8f8]">
       <div className="max-w-4xl gap-11 mx-auto px-4 flex flex-col items-center justify-center">
         <SectionHeader 
           title="Take it from our clients" 
@@ -148,6 +185,9 @@ const TestimonialsSection = () => {
           className="relative"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
           {/* Static card container */}
           <div className="bg-white rounded-lg shadow-[0_12px_24px_0_rgba(0,0,0,0.04)] p-4 lg:p-8 relative overflow-hidden testimonial-container">

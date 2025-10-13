@@ -11,6 +11,54 @@ const SEO = ({
 }) => {
   const fullTitle = title.includes("Scratch Lab Golf") ? title : `${title} | Scratch Lab Golf`
   
+  // Structured data as a string to avoid hydration issues
+  const structuredData = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    "name": "Scratch Lab Golf",
+    "description": "Professional indoor golf simulator with Trackman technology and PGA-level instruction",
+    "url": "https://scratchlabgolf.com",
+    "telephone": "+1 (551) 556-4469",
+    "email": "info@scratchlabgolf.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1637 Mount Diablo Blvd",
+      "addressLocality": "Walnut Creek",
+      "addressRegion": "CA",
+      "postalCode": "94596",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "37.9101",
+      "longitude": "-122.0652"
+    },
+    "openingHours": "Mo-Su 00:00-23:59",
+    "priceRange": "$25-$150",
+    "sport": "Golf",
+    "amenityFeature": [
+      {
+        "@type": "LocationFeatureSpecification",
+        "name": "Trackman Simulator",
+        "value": true
+      },
+      {
+        "@type": "LocationFeatureSpecification", 
+        "name": "PGA Instruction",
+        "value": true
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        "name": "Climate Controlled",
+        "value": true
+      }
+    ],
+    "sameAs": [
+      "https://www.facebook.com/scratchlabgolf",
+      "https://www.instagram.com/scratchlabgolf"
+    ]
+  })
+  
   return (
     <Helmet>
       {/* Basic Meta Tags */}
@@ -53,54 +101,7 @@ const SEO = ({
       <link rel="manifest" href="/manifest.json" />
       
       {/* Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "SportsActivityLocation",
-          "name": "Scratch Lab Golf",
-          "description": "Professional indoor golf simulator with Trackman technology and PGA-level instruction",
-          "url": "https://scratchlabgolf.com",
-          "telephone": "+1 (551) 556-4469",
-          "email": "info@scratchlabgolf.com",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "1637 Mount Diablo Blvd",
-            "addressLocality": "Walnut Creek",
-            "addressRegion": "CA",
-            "postalCode": "94596",
-            "addressCountry": "US"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "37.9101",
-            "longitude": "-122.0652"
-          },
-          "openingHours": "Mo-Su 00:00-23:59",
-          "priceRange": "$25-$150",
-          "sport": "Golf",
-          "amenityFeature": [
-            {
-              "@type": "LocationFeatureSpecification",
-              "name": "Trackman Simulator",
-              "value": true
-            },
-            {
-              "@type": "LocationFeatureSpecification", 
-              "name": "PGA Instruction",
-              "value": true
-            },
-            {
-              "@type": "LocationFeatureSpecification",
-              "name": "Climate Controlled",
-              "value": true
-            }
-          ],
-          "sameAs": [
-            "https://www.facebook.com/scratchlabgolf",
-            "https://www.instagram.com/scratchlabgolf"
-          ]
-        })}
-      </script>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredData }} />
     </Helmet>
   )
 }

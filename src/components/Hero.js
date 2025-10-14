@@ -7,7 +7,7 @@ import HeroClub from '../assets/heroclub.png'
 
 const Hero = () => {
   return (
-    <div className='flex flex-col items-center justify-center gap-4 w-screen h-[calc(100vh-60px)] 2xl:h-[calc(100vh-80px)]'>
+    <div className='flex flex-col items-center justify-center gap-4 w-screen h-[calc(100vh-120px)] md:h-[calc(100vh-60px)] 2xl:h-[calc(100vh-80px)]'>
       <h1 className='text-[16px] lg:text-[20px] font-semibold text-highlight-green'>Indoor Golf Simulator</h1>
       <div className='text-[32px] lg:text-[44px] xl:text-[64px] font-bold text-deep-black'>
         <div className='w-full flex justify-center items-center tracking-tight leading-[130%]'>CREATING THE </div>

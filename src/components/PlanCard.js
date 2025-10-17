@@ -41,7 +41,7 @@ const PlanCard = ({
             </div>
             
             <div className="mt-auto">
-                <Button variant="squared" className="w-full">
+                <Button variant="squared" className="w-full" href="/book/reservation">
                     {buttonText}
                 </Button>
                 {disclaimer && (

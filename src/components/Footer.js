@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import useIntersectionObserver from '../hooks/useIntersectionObserver'
 
 const Footer = () => {
@@ -46,9 +47,9 @@ const Footer = () => {
             <h2 className="text-3xl lg:text-4xl font-bold text-white uppercase tracking-wider">
               SCRATCH LAB
             </h2>
-            <button className="bg-white hover:bg-gray-200 text-black px-8 py-3 rounded-lg font-medium transition-colors duration-200 w-fit">
+            <Link to="/book/reservation" className="bg-white hover:bg-gray-200 text-black px-8 py-3 rounded-lg font-medium transition-colors duration-200 w-fit">
               Book now
-            </button>
+            </Link>
           </div>
 
           {/* Right Side - Social Icons */}
@@ -97,7 +98,7 @@ const Footer = () => {
             <h3 className="text-gray-300 font-medium mb-4">Studio</h3>
             <ul className="space-y-2">
               <li><a href="#" className="text-white hover:text-gray-300 transition-colors">About</a></li>
-              <li><a href="#" className="text-white hover:text-gray-300 transition-colors">Booking</a></li>
+              <li><Link to="/book/reservation" className="text-white hover:text-gray-300 transition-colors">Booking</Link></li>
               <li><a href="#" className="text-white hover:text-gray-300 transition-colors">Trainers</a></li>
               <li><a href="#" className="text-white hover:text-gray-300 transition-colors">Lessons</a></li>
               <li><a href="#" className="text-white hover:text-gray-300 transition-colors">Shop</a></li>

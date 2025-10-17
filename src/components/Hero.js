@@ -17,7 +17,7 @@ const Hero = () => {
       <div className="px-4 pt-3 pb-4 text-[16px] lg:text-[20px] max-w-[560px] text-center text-deep-black/70 text-deep-black leading-[150%]">
         We bring the same technology, instruction, training, and equipment that the pros use – to everyone. 24/7.
       </div>
-      <Button icon={<ArrowDiagonal stroke="white" strokeWidth="1.5" />}>RESERVE NOW</Button>
+      <Button icon={<ArrowDiagonal stroke="white" strokeWidth="1.5" />} href="/book/reservation">RESERVE NOW</Button>
     </div>
   )
 }

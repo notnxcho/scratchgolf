@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -81,13 +82,13 @@ const Navbar = () => {
           {/* CTA Button & Mobile Menu Button */}
           <div className="flex items-center space-x-4">
             {/* Reserve Button */}
-            <button className="hidden sm:inline-flex items-center text-[#12AF9A] hover:text-[#0F9A87] font-semibold text-[14px] lg:text-[18px] bg-transparent p-0 m-0 transition-colors duration-200" style={{ width: 'auto' }}>
+            <Link to="/book/reservation" className="hidden sm:inline-flex items-center text-[#12AF9A] hover:text-[#0F9A87] font-semibold text-[14px] lg:text-[18px] bg-transparent p-0 m-0 transition-colors duration-200" style={{ width: 'auto' }}>
               Reserve Now
               <svg className="ml-1" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {/* Iconoir: ArrowRight */}
                 <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-            </button>
+            </Link>
 
             {/* Mobile menu button */}
             <button
@@ -131,13 +132,13 @@ const Navbar = () => {
             </a>
           ))}
           <div className="px-3 py-2">
-            <button className="inline-flex items-center text-[#12AF9A] hover:text-[#0F9A87] font-semibold text-[16px] bg-transparent p-0 m-0 transition-colors duration-200" style={{ width: 'auto' }}>
+            <Link to="/book/reservation" className="inline-flex items-center text-[#12AF9A] hover:text-[#0F9A87] font-semibold text-[16px] bg-transparent p-0 m-0 transition-colors duration-200" style={{ width: 'auto' }} onClick={() => setIsMobileMenuOpen(false)}>
               Reserve Now
               <svg className="ml-1" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {/* Iconoir: ArrowRight */}
                 <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -39,6 +39,20 @@ const Navbar = () => {
     { name: 'Contact', href: '#contact' }
   ]
 
+  // Smooth scroll function
+  const scrollToSection = (href) => {
+    const element = document.querySelector(href)
+    if (element) {
+      const navbarHeight = 80 // Account for fixed navbar height
+      const elementPosition = element.offsetTop - navbarHeight
+      
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      })
+    }
+  }
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
@@ -66,15 +80,15 @@ const Navbar = () => {
           <div className="hidden lg:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {navItems.map((item) => (
-                <a
+                <button
                   key={item.name}
-                  href={item.href}
+                  onClick={() => scrollToSection(item.href)}
                   className={`px-3 py-2 text-sm font-medium transition-colors duration-300 hover:text-[#12AF9A] ${
                     isScrolled ? 'text-gray-700' : 'text-deep-black/50'
                   }`}
                 >
                   {item.name}
-                </a>
+                </button>
               ))}
             </div>
           </div>
@@ -122,14 +136,16 @@ const Navbar = () => {
       }`}>
         <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-md border-t border-gray-100">
           {navItems.map((item) => (
-            <a
+            <button
               key={item.name}
-              href={item.href}
-              className="block px-3 py-2 text-[16px] font-medium text-gray-700 hover:text-[#12AF9A] hover:bg-gray-50 rounded-md transition-colors duration-300"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                scrollToSection(item.href)
+                setIsMobileMenuOpen(false)
+              }}
+              className="block w-full text-left px-3 py-2 text-[16px] font-medium text-gray-700 hover:text-[#12AF9A] hover:bg-gray-50 rounded-md transition-colors duration-300"
             >
               {item.name}
-            </a>
+            </button>
           ))}
           <div className="px-3 py-2">
             <Link to="/book/reservation" className="inline-flex items-center text-[#12AF9A] hover:text-[#0F9A87] font-semibold text-[16px] bg-transparent p-0 m-0 transition-colors duration-200" style={{ width: 'auto' }} onClick={() => setIsMobileMenuOpen(false)}>

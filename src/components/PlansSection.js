@@ -45,7 +45,7 @@ const PlansSection = () => {
     ]
 
     return (
-        <div className="w-screen flex flex-col items-center gap-16 py-12 lg:py-[120px] bg-[#f8f8f8]">
+        <div id="pricing" className="w-screen flex flex-col items-center gap-16 py-12 lg:py-[120px] bg-[#f8f8f8]">
             <SectionHeader 
                 title="Choose your perfect golf plan" 
                 description="Select the plan that fits your golf journey and start improving your game today" 

@@ -6,7 +6,7 @@ import Course from "./grid/Course"
 
 const FeaturesSection = () => {
     return (
-        <div className="w-screen min-h-screen flex flex-col items-center gap-16 py-12 lg:py-[120px]">
+        <div id="about" className="w-screen min-h-screen flex flex-col items-center gap-16 py-12 lg:py-[120px]">
             <SectionHeader 
                 title="Redefined indoors for a Luxurious golf experience" 
                 description="Experience premium simulator, gear and training in one single exclusive studio." 

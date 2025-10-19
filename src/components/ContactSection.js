@@ -31,7 +31,7 @@ const ContactSection = () => {
   ]
 
   return (
-    <div className="w-screen flex flex-col items-center gap-16 py-12 lg:py-[120px] bg-white">
+    <div id="contact" className="w-screen flex flex-col items-center gap-16 py-12 lg:py-[120px] bg-white">
       <SectionHeader 
         title="Book, inquire, or get support" 
         description="Our team is ready to help you." 

@@ -5,7 +5,7 @@ import ArrowDiagonal from "./icons/ArrowDiagonal"
 
 const ScrollSection = () => {
     return (
-        <div className="w-screen flex flex-col items-center gap-16 py-12 lg:py-[120px] bg-[#1c1c1c]">
+        <div id="facilities" className="w-screen flex flex-col items-center gap-16 py-12 lg:py-[120px] bg-[#1c1c1c]">
             {/* <SectionHeader title="Scroll Section" description="Scroll Section" theme="dark" /> */}
             
             {/* Two column layout */}

@@ -3,7 +3,7 @@ import Card from "./grid/Card"
 
 const ServicesSection = () => {
     return (
-        <div className="w-screen flex flex-col items-center gap-16 py-12 lg:py-[120px] bg-white">
+        <div id="services" className="w-screen flex flex-col items-center gap-16 py-12 lg:py-[120px] bg-white">
             <SectionHeader 
                 title="More than just a golf simulator" 
                 description="We offer a wide range of services to help you improve your golf game." 

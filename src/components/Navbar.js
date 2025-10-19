@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import Logo from '../assets/logo.jpeg'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import Logo from '../assets/svg-iso-color.svg'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const location = useLocation()
+  const navigate = useNavigate()
 
   // Handle scroll effect
   useEffect(() => {
@@ -37,20 +39,27 @@ const Navbar = () => {
     { name: 'Services', href: '#services' },
     { name: 'Facilities', href: '#facilities' },
     { name: 'Pricing', href: '#pricing' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Contact', href: '#contact' },
+    { name: 'FAQ', href: '#faq' }
   ]
 
-  // Smooth scroll function
-  const scrollToSection = (href) => {
-    const element = document.querySelector(href)
-    if (element) {
-      const navbarHeight = 80 // Account for fixed navbar height
-      const elementPosition = element.offsetTop - navbarHeight
-      
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      })
+  // Function to handle navigation to home page sections
+  const navigateToSection = (sectionId) => {
+    if (location.pathname === '/') {
+      // If already on home page, scroll to section
+      const element = document.querySelector(sectionId)
+      if (element) {
+        const navbarHeight = 80
+        const elementPosition = element.offsetTop - navbarHeight
+        
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        })
+      }
+    } else {
+      // If on different page, navigate to home with section hash
+      navigate(`/${sectionId}`)
     }
   }
 
@@ -80,7 +89,7 @@ const Navbar = () => {
               {navItems.map((item) => (
                 <button
                   key={item.name}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => navigateToSection(item.href)}
                   className={`px-3 py-2 text-sm font-medium transition-colors duration-300 hover:text-[#12AF9A] ${
                     isScrolled ? 'text-gray-700' : 'text-deep-black/50'
                   }`}
@@ -137,7 +146,7 @@ const Navbar = () => {
             <button
               key={item.name}
               onClick={() => {
-                scrollToSection(item.href)
+                navigateToSection(item.href)
                 setIsMobileMenuOpen(false)
               }}
               className="block w-full text-left px-3 py-2 text-[16px] font-medium text-gray-700 hover:text-[#12AF9A] hover:bg-gray-50 rounded-md transition-colors duration-300"

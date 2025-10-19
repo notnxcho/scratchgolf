@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import useIntersectionObserver from '../hooks/useIntersectionObserver'
 
 const Footer = () => {
@@ -7,6 +7,28 @@ const Footer = () => {
     threshold: 0.3
   })
   const videoElementRef = useRef(null)
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  // Function to handle navigation to home page sections
+  const navigateToSection = (sectionId) => {
+    if (location.pathname === '/') {
+      // If already on home page, scroll to section
+      const element = document.querySelector(sectionId)
+      if (element) {
+        const navbarHeight = 80
+        const elementPosition = element.offsetTop - navbarHeight
+        
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        })
+      }
+    } else {
+      // If on different page, navigate to home with section hash
+      navigate(`/${sectionId}`)
+    }
+  }
 
   useEffect(() => {
     if (isVideoVisible && hasVideoIntersected && videoElementRef.current) {
@@ -44,9 +66,17 @@ const Footer = () => {
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 lg:gap-16">
           {/* Left Side - Brand and CTA */}
           <div className="flex flex-col gap-6">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white uppercase tracking-wider">
-              SCRATCH LAB
-            </h2>
+            <div className="flex items-center gap-2">
+                <img
+                  src={require('../assets/svg-iso-white.svg').default}
+                  alt="SCRATCH LAB ISO Logo"
+                  className="h-12 w-auto mb-2"
+                  draggable="false"
+                />
+                <h2 className="text-3xl lg:text-4xl font-bold text-white uppercase tracking-wider hidden lg:block">
+                  SCRATCH LAB
+                </h2>
+            </div>
             <Link to="/book/reservation" className="bg-white hover:bg-gray-200 text-black px-8 py-3 rounded-lg font-medium transition-colors duration-200 w-fit">
               Book now
             </Link>
@@ -97,11 +127,11 @@ const Footer = () => {
           <div>
             <h3 className="text-gray-300 font-medium mb-4">Studio</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-white hover:text-gray-300 transition-colors">About</a></li>
+              <li><button onClick={() => navigateToSection('#about')} className="text-white hover:text-gray-300 transition-colors text-left">About</button></li>
               <li><Link to="/book/reservation" className="text-white hover:text-gray-300 transition-colors">Booking</Link></li>
-              <li><a href="#" className="text-white hover:text-gray-300 transition-colors">Trainers</a></li>
-              <li><a href="#" className="text-white hover:text-gray-300 transition-colors">Lessons</a></li>
-              <li><a href="#" className="text-white hover:text-gray-300 transition-colors">Shop</a></li>
+              <li><button onClick={() => navigateToSection('#services')} className="text-white hover:text-gray-300 transition-colors text-left">Services</button></li>
+              <li><button onClick={() => navigateToSection('#facilities')} className="text-white hover:text-gray-300 transition-colors text-left">Facilities</button></li>
+              <li><button onClick={() => navigateToSection('#pricing')} className="text-white hover:text-gray-300 transition-colors text-left">Pricing</button></li>
             </ul>
           </div>
 
@@ -109,10 +139,10 @@ const Footer = () => {
           <div>
             <h3 className="text-gray-300 font-medium mb-4">Services</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-white hover:text-gray-300 transition-colors">Simulators</a></li>
-              <li><a href="#" className="text-white hover:text-gray-300 transition-colors">Fitting</a></li>
-              <li><a href="#" className="text-white hover:text-gray-300 transition-colors">Events</a></li>
-              <li><a href="#" className="text-white hover:text-gray-300 transition-colors">FAQ</a></li>
+              <li><button onClick={() => navigateToSection('#services')} className="text-white hover:text-gray-300 transition-colors text-left">Simulators</button></li>
+              <li><button onClick={() => navigateToSection('#services')} className="text-white hover:text-gray-300 transition-colors text-left">Fitting</button></li>
+              <li><Link to="/book/event" className="text-white hover:text-gray-300 transition-colors">Events</Link></li>
+              <li><button onClick={() => navigateToSection('#faq')} className="text-white hover:text-gray-300 transition-colors text-left">FAQ</button></li>
             </ul>
           </div>
 
@@ -120,7 +150,7 @@ const Footer = () => {
           <div>
             <h3 className="text-gray-300 font-medium mb-4">Support</h3>
             <ul className="space-y-2">
-              <li><a href="#contact" className="text-white hover:text-gray-300 transition-colors">Contact</a></li>
+              <li><button onClick={() => navigateToSection('#contact')} className="text-white hover:text-gray-300 transition-colors text-left">Contact</button></li>
               <li><Link to="/legal/liability" className="text-white hover:text-gray-300 transition-colors">Liability Waiver</Link></li>
               <li><Link to="/legal/terms" className="text-white hover:text-gray-300 transition-colors">Terms</Link></li>
               <li><Link to="/legal/privacy" className="text-white hover:text-gray-300 transition-colors">Privacy</Link></li>

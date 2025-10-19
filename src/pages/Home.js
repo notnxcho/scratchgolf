@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import SEO from '../components/SEO'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
@@ -14,6 +15,29 @@ import GradualBlur from '../components/reactbits/GradualBlur'
 import Footer from '../components/Footer'
 
 const Home = () => {
+  const location = useLocation()
+
+  // Handle hash navigation when coming from other routes
+  useEffect(() => {
+    if (location.hash) {
+      // Small delay to ensure page is fully loaded
+      const timer = setTimeout(() => {
+        const element = document.querySelector(location.hash)
+        if (element) {
+          const navbarHeight = 80
+          const elementPosition = element.offsetTop - navbarHeight
+          
+          window.scrollTo({
+            top: elementPosition,
+            behavior: 'smooth'
+          })
+        }
+      }, 100)
+      
+      return () => clearTimeout(timer)
+    }
+  }, [location.hash])
+
   return (
     <div className='w-screen min-h-screen flex flex-col items-center bg-[#f8f8f8]'>
       <SEO />

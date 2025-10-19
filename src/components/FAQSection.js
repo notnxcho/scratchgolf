@@ -45,7 +45,7 @@ const FAQSection = () => {
   }
 
   return (
-    <div className="w-screen flex flex-col items-center gap-16 py-12 lg:py-[120px] bg-[#f8f8f8]">
+    <div id="faq" className="w-screen flex flex-col items-center gap-16 py-12 lg:py-[120px] bg-[#f8f8f8]">
       <SectionHeader 
         title="Frequently Asked Questions" 
         description="Everything you need to know about our indoor golf simulator experience" 

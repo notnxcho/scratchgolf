@@ -120,10 +120,10 @@ const Footer = () => {
           <div>
             <h3 className="text-gray-300 font-medium mb-4">Support</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-white hover:text-gray-300 transition-colors">Contact</a></li>
-              <li><a href="#" className="text-white hover:text-gray-300 transition-colors">Liability Waiver</a></li>
-              <li><a href="#" className="text-white hover:text-gray-300 transition-colors">Terms</a></li>
-              <li><a href="#" className="text-white hover:text-gray-300 transition-colors">Privacy</a></li>
+              <li><a href="#contact" className="text-white hover:text-gray-300 transition-colors">Contact</a></li>
+              <li><Link to="/legal/liability" className="text-white hover:text-gray-300 transition-colors">Liability Waiver</Link></li>
+              <li><Link to="/legal/terms" className="text-white hover:text-gray-300 transition-colors">Terms</Link></li>
+              <li><Link to="/legal/privacy" className="text-white hover:text-gray-300 transition-colors">Privacy</Link></li>
             </ul>
           </div>
 
@@ -137,7 +137,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mt-16 pt-8 border-t border-gray-600">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mt-16 pt-8 border-t border-white/30">
           <p className="text-gray-300 text-sm">
             © 2025 Scratch Lab Golf. All rights reserved.
           </p>

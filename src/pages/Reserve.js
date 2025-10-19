@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import SEO from '../components/SEO'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import SectionHeader from '../components/SectionHeader'
 
 const Book = () => {
   const { tab } = useParams()
@@ -69,13 +70,13 @@ const Book = () => {
                   "acceptText": "I accept the terms and conditions, privacy policy, and waiver of liability.",
                   "urls":[{
                     "text": "terms and conditions",
-                    "url": "/terms"
+                    "url": "/legal/terms"
                   },{
                     "text": "privacy policy",
-                    "url": "/privacy"
+                    "url": "/legal/privacy"
                   },{
                     "text": "waiver of liability",
-                    "url": "/waiver-of-liability"
+                    "url": "/legal/liability"
                   }]
                 },
                 "subscriptions":{
@@ -162,26 +163,34 @@ const Book = () => {
         if (widgetRef.current) {
           widgetRef.current.innerHTML = '<div data-tf-live="01K7BQWT8R0EER4PYVFHD9ZH2R"></div>'
           
-          // Load Typeform script if not already loaded
-          if (!document.querySelector('script[src*="embed.typeform.com"]')) {
-            const script = document.createElement('script')
-            script.src = '//embed.typeform.com/next/embed.js'
-            script.async = true
-            document.head.appendChild(script)
+          // Remove existing Typeform script to force reload
+          const existingScript = document.querySelector('script[src*="embed.typeform.com"]')
+          if (existingScript) {
+            existingScript.remove()
           }
+          
+          // Load Typeform script
+          const script = document.createElement('script')
+          script.src = '//embed.typeform.com/next/embed.js'
+          script.async = true
+          document.head.appendChild(script)
         }
       } else if (activeTab === 'membership') {
         // Load Typeform for membership
         if (widgetRef.current) {
           widgetRef.current.innerHTML = '<div data-tf-live="01K7BQH959GWGF8D5Y6EFF1XNC"></div>'
           
-          // Load Typeform script if not already loaded
-          if (!document.querySelector('script[src*="embed.typeform.com"]')) {
-            const script = document.createElement('script')
-            script.src = '//embed.typeform.com/next/embed.js'
-            script.async = true
-            document.head.appendChild(script)
+          // Remove existing Typeform script to force reload
+          const existingScript = document.querySelector('script[src*="embed.typeform.com"]')
+          if (existingScript) {
+            existingScript.remove()
           }
+          
+          // Load Typeform script
+          const script = document.createElement('script')
+          script.src = '//embed.typeform.com/next/embed.js'
+          script.async = true
+          document.head.appendChild(script)
         }
       }
     }
@@ -203,7 +212,7 @@ const Book = () => {
   ]
 
   const renderWidget = () => {
-    return <div ref={widgetRef} className="w-full min-h-[500px]"></div>
+    return <div ref={widgetRef} className="w-screen min-h-[500px] md:w-[600px]"></div>
   }
 
   return (
@@ -212,25 +221,18 @@ const Book = () => {
       <Navbar />
       
       {/* Main Content */}
-      <div className="w-full max-w-6xl mx-auto px-4 py-16">
+      <div className="flex flex-col items-center gap-8 w-full max-w-6xl mx-auto px-4 py-16 mt-[40px] md:mt-[80px]">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            Book a Time
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Choose your booking type and get started with your golf experience
-          </p>
-        </div>
+        <SectionHeader title="Book a Time" description="Choose your booking type and get started with your golf experience" />
 
         {/* Tab Navigation */}
-        <div className="flex justify-center mb-8">
-          <div className="bg-white rounded-lg p-1 shadow-lg border border-gray-200">
+        <div className="flex justify-center">
+          <div className="bg-white rounded-lg space-x-1 md:space-x-2 p-1 shadow-lg border border-gray-200">
             {tabs.map((tabItem) => (
               <button
                 key={tabItem.id}
                 onClick={() => handleTabChange(tabItem.id)}
-                className={`px-6 py-3 rounded-md font-semibold transition-all duration-200 ${
+                className={`px-3 py-2 md:px-6 md:py-3 rounded-md font-semibold transition-all duration-200 ${
                   activeTab === tabItem.id
                     ? 'bg-gradient-to-b from-[#12AF9A] to-[#15CBB3] text-white shadow-md'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -243,7 +245,7 @@ const Book = () => {
         </div>
 
         {/* Widget Container */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 min-h-[600px]">
+        <div className="bg-white rounded-2xl shadow-lg min-h-[500px] w-screen md:w-[600px]">
           {renderWidget()}
         </div>
       </div>

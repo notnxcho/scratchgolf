@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Logo from '../assets/logo.jpeg'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -64,16 +65,13 @@ const Navbar = () => {
           
           {/* Logo */}
           <div className="flex-shrink-0">
-            <div className="flex items-center">
-              <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-[#12AF9A] to-[#15CBB3] rounded-lg flex items-center justify-center">
-                <span className="text-deep-black font-bold text-sm lg:text-lg">SG</span>
-              </div>
-              <span className={`ml-2 font-bold text-lg lg:text-xl transition-colors duration-300 ${
-                isScrolled ? 'text-gray-900' : 'text-deep-black'
-              }`}>
-                Scratch Golf
-              </span>
-            </div>
+            <Link to="/" className="flex items-center">
+              <img 
+                src={Logo} 
+                alt="Scratch Golf Logo" 
+                className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg object-cover"
+              />
+            </Link>
           </div>
 
           {/* Desktop Navigation */}

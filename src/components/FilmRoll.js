@@ -1,6 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
 import venue1 from '../assets/venue1.jpeg'
 import venue2 from '../assets/venue2.jpeg'
+import venue3 from '../assets/venue3.jpeg'
+import venue4 from '../assets/venue4.jpeg'
+import venue5 from '../assets/venue5.jpeg'
+import venue6 from '../assets/venue6.jpeg'
 
 const FilmRoll = () => {
     const [scrollTranslateX, setScrollTranslateX] = useState(0)
@@ -16,7 +20,7 @@ const FilmRoll = () => {
     const animationRef = useRef(null)
     
     // Create extended array for infinite loop
-    const originalImages = [venue1, venue2]
+    const originalImages = [venue1, venue2, venue3, venue4, venue5, venue6]
     const images = [...originalImages, ...originalImages, ...originalImages, ...originalImages]
     const imageWidth = 600 + 16 // 600px width + 16px gap
     const singleSetWidth = originalImages.length * imageWidth

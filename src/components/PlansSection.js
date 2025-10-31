@@ -5,12 +5,14 @@ const PlansSection = () => {
     const plans = [
         {
             title: "SIMULATOR ACCESS",
-            price: "$40/half hour",
+            price: "$30/half hour",
             description: "Book Trackman simulator sessions",
             features: [
                 "400+ virtual courses",
                 "Advanced ball tracking",
-                "Climate-controlled bays"
+                "Climate-controlled bays",
+                "24/7 access",
+                "+ $10/half hour for club rental"
             ],
             buttonText: "Book",
             disclaimer: "$5 per half hour, for each additional party member."

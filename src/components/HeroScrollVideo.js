@@ -86,17 +86,17 @@ const HeroScrollVideo = () => {
         videoContainer,
         {
           top: '15vh',
-          width: '80%',
+          width: '70%',
           height: '70vh',
-          borderRadius: '32px',
-          maxWidth: '90%'
+          borderRadius: '44px',
+          maxWidth: '160vh'
         },
         {
           top: '0',
           width: '100vw',
           height: '100vh',
-          borderRadius: '0px',
-          maxWidth: '100vw',
+          borderRadius: '16px',
+          maxWidth: '180vh',
           ease: 'power2.inOut'
         }
       )
@@ -184,7 +184,7 @@ const HeroScrollVideo = () => {
       {/* Video Container - starts as rounded white rectangle, grows to full screen */}
       <div
         ref={videoContainerRef}
-        className="sticky top-[15vh] w-[80%] h-[70vh] max-w-[90%] rounded-[32px] bg-white overflow-hidden"
+        className="sticky top-[15vh] w-[70%] h-[70vh] max-w-[160vh] rounded-[44px] bg-white overflow-hidden"
         style={{
           position: 'sticky',
           top: 0,

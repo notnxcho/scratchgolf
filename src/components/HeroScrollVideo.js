@@ -71,6 +71,49 @@ const HeroScrollVideo = () => {
         }
       )
 
+      // Get responsive values based on window width - only mobile and md
+      const getResponsiveValues = () => {
+        const width = window.innerWidth
+        
+        if (width >= 768) { // md and up
+          return {
+            from: {
+              top: '15vh',
+              width: '70%',
+              height: '70vh',
+              borderRadius: '44px',
+              maxWidth: '160vh'
+            },
+            to: {
+              top: '0',
+              width: '100vw',
+              height: '100vh',
+              borderRadius: '16px',
+              maxWidth: '180vh'
+            }
+          }
+        } else { // mobile
+          return {
+            from: {
+              top: '15vh',
+              width: '85%',
+              height: '55vh',
+              borderRadius: '24px',
+              maxWidth: '95%'
+            },
+            to: {
+              top: '0',
+              width: '100vw',
+              height: '100vh',
+              borderRadius: '0px',
+              maxWidth: '100vw'
+            }
+          }
+        }
+      }
+
+      const responsiveValues = getResponsiveValues()
+
       // Video container growth animation
       growTl = gsap.timeline({
         defaults: { duration: 1 },
@@ -85,21 +128,67 @@ const HeroScrollVideo = () => {
       growTl.fromTo(
         videoContainer,
         {
-          top: '15vh',
-          width: '70%',
-          height: '70vh',
-          borderRadius: '44px',
-          maxWidth: '160vh'
+          top: responsiveValues.from.top,
+          width: responsiveValues.from.width,
+          height: responsiveValues.from.height,
+          borderRadius: responsiveValues.from.borderRadius,
+          maxWidth: responsiveValues.from.maxWidth
         },
         {
-          top: '0',
-          width: '100vw',
-          height: '100vh',
-          borderRadius: '16px',
-          maxWidth: '180vh',
+          top: responsiveValues.to.top,
+          width: responsiveValues.to.width,
+          height: responsiveValues.to.height,
+          borderRadius: responsiveValues.to.borderRadius,
+          maxWidth: responsiveValues.to.maxWidth,
           ease: 'power2.inOut'
         }
       )
+
+      // Store resize handler for cleanup
+      let resizeHandler = null
+
+      // Update on resize - recreate timeline with new values
+      resizeHandler = () => {
+        if (growTl) {
+          growTl.kill()
+        }
+        const newValues = getResponsiveValues()
+        growTl = gsap.timeline({
+          defaults: { duration: 1 },
+          scrollTrigger: {
+            trigger: container,
+            start: 'top bottom',
+            end: 'bottom bottom',
+            scrub: true
+          }
+        })
+        growTl.fromTo(
+          videoContainer,
+          {
+            top: newValues.from.top,
+            width: newValues.from.width,
+            height: newValues.from.height,
+            borderRadius: newValues.from.borderRadius,
+            maxWidth: newValues.from.maxWidth
+          },
+          {
+            top: newValues.to.top,
+            width: newValues.to.width,
+            height: newValues.to.height,
+            borderRadius: newValues.to.borderRadius,
+            maxWidth: newValues.to.maxWidth,
+            ease: 'power2.inOut'
+          }
+        )
+      }
+
+      window.addEventListener('resize', resizeHandler)
+      
+      // Return cleanup for resize handler (will be handled in main cleanup)
+      // Store it so we can clean it up
+      if (!container._resizeHandler) {
+        container._resizeHandler = resizeHandler
+      }
     }
 
     // Wait for video metadata to load
@@ -158,6 +247,11 @@ const HeroScrollVideo = () => {
       if (metadataHandler) {
         video.removeEventListener('loadedmetadata', metadataHandler)
       }
+      // Cleanup resize handler
+      if (container && container._resizeHandler) {
+        window.removeEventListener('resize', container._resizeHandler)
+        container._resizeHandler = null
+      }
     }
   }, { scope: containerRef })
 
@@ -184,10 +278,9 @@ const HeroScrollVideo = () => {
       {/* Video Container - starts as rounded white rectangle, grows to full screen */}
       <div
         ref={videoContainerRef}
-        className="sticky top-[15vh] w-[70%] h-[70vh] max-w-[160vh] rounded-[44px] bg-white overflow-hidden"
+        className="sticky top-[15vh] w-[85%] md:w-[70%] h-[55vh] md:h-[70vh] max-w-[95%] md:max-w-[160vh] rounded-[24px] md:rounded-[44px] bg-white overflow-hidden"
         style={{
           position: 'sticky',
-          top: 0,
           zIndex: 10
         }}
       >

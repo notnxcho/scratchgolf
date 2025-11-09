@@ -14,6 +14,8 @@ import ContactSection from '../components/ContactSection'
 import FAQSection from '../components/FAQSection'
 import GradualBlur from '../components/reactbits/GradualBlur'
 import Footer from '../components/Footer'
+import HeroBackgroundVideo from '../components/HeroBackgroundVideo'
+import FeaturesSectionAlt from '../components/FeaturesSectionAlt'
 
 const Home = () => {
   const location = useLocation()
@@ -44,9 +46,12 @@ const Home = () => {
       <SEO />
       <Navbar />
       {/* <Hero /> */}
-      <HeroScrollVideo />
+      {/* <HeroScrollVideo /> */}
+      <HeroBackgroundVideo />
       {/* <FilmRoll /> */}
+      
       <FeaturesSection />
+      <FeaturesSectionAlt/>
       <ServicesSection />
       <ScrollSection />
       <PlansSection />

@@ -5,7 +5,7 @@ import ArrowDiagonal from "./icons/ArrowDiagonal"
 
 const ScrollSection = () => {
     return (
-        <div id="facilities" className="w-screen flex flex-col items-center gap-16 py-12 lg:py-[120px] bg-[#1c1c1c]">
+        <div id="facilities" className="w-screen flex flex-col items-center gap-16 py-12 lg:py-[120px] bg-[#101012]">
             {/* <SectionHeader title="Scroll Section" description="Scroll Section" theme="dark" /> */}
             
             {/* Two column layout */}
@@ -21,19 +21,19 @@ const ScrollSection = () => {
                 
                 {/* Right column - Three sticky divs */}
                 <div className="flex flex-col">
-                    <div className="h-[600px] max-h-screen sticky top-24 p-8 flex flex-col justify-center" style={{background: 'linear-gradient(180deg, #1c1c1c00 0%, #1c1c1cff 20%, #1c1c1cff 80%, #1c1c1c00 100%)'}}>
+                    <div className="h-[600px] max-h-screen sticky top-24 p-8 flex flex-col justify-center" style={{background: 'linear-gradient(180deg, #10101200 0%, #101012ff 20%, #101012ff 80%, #10101200 100%)'}}>
                         <div className="text-[24px] lg:text-[32px] font-bold text-white mb-4">Unparalleled Technology, For Everyone</div>
                         <p className="text-white/70 text-[16px] lg:text-[20px] leading-[150%] mb-8">Experience the same state-of-the-art technology that the pros use. Practice, play 400+ virtual courses, and get multimodal metrics from spin to impact to launch angles, on every single shot.</p>
                         <Button icon={<ArrowDiagonal stroke="white" strokeWidth="1.5" />} href="/book/reservation">RESERVE NOW</Button>
                     </div>
                     
-                    <div className="h-[600px] max-h-screen sticky top-24 p-8 flex flex-col justify-center" style={{background: 'linear-gradient(180deg, #1c1c1c00 0%, #1c1c1cff 20%, #1c1c1cff 80%, #1c1c1c00 100%)'}}>
+                    <div className="h-[600px] max-h-screen sticky top-24 p-8 flex flex-col justify-center" style={{background: 'linear-gradient(180deg, #10101200 0%, #101012ff 20%, #101012ff 80%, #10101200 100%)'}}>
                         <div className="text-[24px] lg:text-[32px] font-bold text-white mb-4">Trackman Bay Sessions</div>
                         <p className="text-white/70 text-[16px] lg:text-[20px] leading-[150%] mb-8">Play 400+ top courses or practice with advanced ball tracking in a private, climate-controlled bay. Hourly rentals available.</p>
                         <Button icon={<ArrowDiagonal stroke="white" strokeWidth="1.5" />} href="/book/reservation">RESERVE NOW</Button>
                     </div>
                     
-                    <div className="h-[600px] max-h-screen sticky top-24 p-8 flex flex-col justify-center" style={{background: 'linear-gradient(180deg, #1c1c1c00 0%, #1c1c1cff 20%, #1c1c1cff 80%, #1c1c1c00 100%)'}}>
+                    <div className="h-[600px] max-h-screen sticky top-24 p-8 flex flex-col justify-center" style={{background: 'linear-gradient(180deg, #10101200 0%, #101012ff 20%, #101012ff 80%, #10101200 100%)'}}>
                         <div className="text-[24px] lg:text-[32px] font-bold text-white mb-4">Golf Fitness & Instruction</div>
                         <p className="text-white/70 text-[16px] lg:text-[20px] leading-[150%] mb-8">Train with certified pros to improve your swing, strength, and flexibility. Personalized programs for all ages and skill levels.</p>
                         <Button icon={<ArrowDiagonal stroke="white" strokeWidth="1.5" />} href="/book/reservation">RESERVE NOW</Button>

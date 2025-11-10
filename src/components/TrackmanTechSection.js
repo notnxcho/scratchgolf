@@ -4,7 +4,7 @@ import Ball from "./grid/Ball"
 
 const TrackmanTechSection = () => {
     return (
-        <div className="w-screen flex flex-col items-center gap-16 py-12 lg:py-[120px] bg-[radial-gradient(farthest-side_at_top,#292929,#101012_50%)] bg-[length:300%_100%] md:bg-[length:100%_100%]">
+        <div className="w-screen flex flex-col items-center gap-8 lg:gap-16 pt-12 lg:pt-[120px] bg-[radial-gradient(farthest-side_at_top,#292929,#101012_50%)] bg-[length:300%_100%] md:bg-[length:100%_100%]">
             <SectionHeader 
                 title="The ultimate indoor ball tracking system" 
                 description="Trackman devices provide the most precise swing tracking and physics simulation, guaranteeing an immersive game"

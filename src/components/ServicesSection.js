@@ -66,12 +66,12 @@ const ServicesSection = () => {
                         <ServiceCard 
                             title={cards[0].title}
                             description={cards[0].description}
-                            className="h-[280px] ml-4"
+                            className="h-[220px] ml-4"
                         />
                         <ServiceCard 
                             title={cards[3].title}
                             description={cards[3].description}
-                            className="h-[280px] ml-4"
+                            className="h-[220px] ml-4"
                         />
                     </div>
                     
@@ -80,12 +80,12 @@ const ServicesSection = () => {
                         <ServiceCard 
                             title={cards[1].title}
                             description={cards[1].description}
-                            className="h-[280px]"
+                            className="h-[220px]"
                         />
                         <ServiceCard 
                             title={cards[4].title}
                             description={cards[4].description}
-                            className="h-[280px]"
+                            className="h-[220px]"
                         />
                     </div>
                     
@@ -94,12 +94,12 @@ const ServicesSection = () => {
                         <ServiceCard 
                             title={cards[2].title}
                             description={cards[2].description}
-                            className="h-[280px] mr-8"
+                            className="h-[220px] mr-8"
                         />
                         <ServiceCard 
                             title={cards[5].title}
                             description={cards[5].description}
-                            className="h-[280px] mr-8"
+                            className="h-[220px] mr-8"
                             hasButton={cards[5].hasButton}
                             variant="highlight"
                             bgColor="#1c1c1c"

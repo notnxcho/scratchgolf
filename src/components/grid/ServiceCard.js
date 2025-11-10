@@ -18,7 +18,7 @@ const ServiceCard = ({title, description, className, hasButton, variant, bgColor
                     variant="transparent"
                     size="small"
                     icon={<ArrowDiagonal stroke="white" strokeWidth="1.5" />}
-                    href="/book/reservation"
+                    href="/book/membership"
                     className="w-full justify-center"
                 >
                     BECOME A MEMBER

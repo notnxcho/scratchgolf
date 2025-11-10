@@ -83,8 +83,8 @@ const HeroBackgroundVideo = () => {
           position: 'absolute', 
           bottom: 0, 
           left: 0,
-          transform: `scaleX(${scaleX})`,
-          transformOrigin: 'left center'
+          transform: `scaleX(${scaleX}) scaleY(${scaleX*1.4 > 1 ? 1 : scaleX*1.4})`,
+          transformOrigin: 'left bottom'
         }} 
         viewBox="0 0 1440 120" 
         fill="none" 

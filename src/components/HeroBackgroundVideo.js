@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import HeroPill from './HeroPill'
 import Button from './Button'
 import ArrowDiagonal from './icons/ArrowDiagonal'
@@ -8,22 +8,11 @@ import heroVideo from '../assets/hero.mp4'
 import trackmanLogo from '../assets/trackmanlogo.png'
 
 const HeroBackgroundVideo = () => {
-  const [resizeTrigger, setResizeTrigger] = useState(0)
-
-  useEffect(() => {
-    const handleResize = () => {
-      setResizeTrigger(prev => prev + 1)
-    }
-
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const viewportWidth = useMemo(() => {
     if (typeof window === 'undefined') return 1440
     return window.innerWidth
-  }, [resizeTrigger])
+  }, [])
 
   const scaleX = useMemo(() => {
     return viewportWidth / 1440

@@ -121,14 +121,6 @@ const FilmRoll = () => {
         handleStart(e.clientX)
     }
     
-    const onMouseMove = (e) => {
-        handleMove(e.clientX)
-    }
-    
-    const onMouseUp = () => {
-        handleEnd()
-    }
-    
     // Touch events
     const onTouchStart = (e) => {
         handleStart(e.touches[0].clientX)
@@ -141,18 +133,6 @@ const FilmRoll = () => {
     const onTouchEnd = () => {
         handleEnd()
     }
-    
-    // Global mouse events
-    useEffect(() => {
-        if (isDragging) {
-            document.addEventListener('mousemove', onMouseMove)
-            document.addEventListener('mouseup', onMouseUp)
-            return () => {
-                document.removeEventListener('mousemove', onMouseMove)
-                document.removeEventListener('mouseup', onMouseUp)
-            }
-        }
-    }, [isDragging, startX, startDragTranslateX])
     
     // Image click
     const handleImageClick = (index) => {

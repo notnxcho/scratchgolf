@@ -5,6 +5,7 @@ import ArrowDiagonal from './icons/ArrowDiagonal'
 import HeroBall from '../assets/heroball.png'
 import HeroClub from '../assets/heroclub.png'
 import heroVideo from '../assets/hero.mp4'
+import heroSimVideo from '../assets/herosim.mp4'
 import trackmanLogo from '../assets/trackmanlogo.png'
 
 const HeroBackgroundVideo = () => {
@@ -18,6 +19,12 @@ const HeroBackgroundVideo = () => {
     return viewportWidth / 1440
   }, [viewportWidth])
 
+  // Randomly select between hero.mp4 and herosim.mp4
+  const selectedVideo = useMemo(() => {
+    const videos = [heroVideo, heroSimVideo]
+    return videos[Math.floor(Math.random() * videos.length)]
+  }, [])
+
   return (
     <div className='relative w-screen h-[calc(100vh-80px)] md:h-[calc(100vh-20px)] 2xl:h-[calc(100vh-40px)] flex flex-col items-center justify-center overflow-hidden'>
       {/* Video Background */}
@@ -29,7 +36,7 @@ const HeroBackgroundVideo = () => {
         playsInline
         preload="auto"
       >
-        <source src={heroVideo} type="video/mp4" />
+        <source src={selectedVideo} type="video/mp4" />
       </video>
 
       {/* Radial Gradient Overlay */}

@@ -1,7 +1,7 @@
 const CourseAlt = () => {
     return (
         <div
-            className="flex flex-col lg:flex-row min-w-[300px] max-w-[600px] max-h-[312px] rounded-[12px] flex-grow relative overflow-hidden bg-[#F2F2F2]"
+            className="flex flex-col md:flex-row min-w-[300px] max-w-[600px] md:h-[312px] rounded-[12px] flex-grow relative overflow-hidden bg-[#F2F2F2]"
             style={{
                 boxShadow: '0px 0px 24px 8px rgba(255,255,255,0.8), inset 0px 0px 24px 0px rgba(0,0,0,0.06)'
             }}
@@ -9,11 +9,11 @@ const CourseAlt = () => {
             {/* Left Section - Text Content */}
             <div className="flex flex-col gap-3 basis-1/2 p-5 lg:p-8 pr-4 lg:pr-6">
                 <h4 className="text-[24px] leading-[120%] font-bold text-deep-black">Play 400+ Courses</h4>
-                <p className="text-[16px] lg:text-[20px] leading-[150%] text-deep-black/70 m-0">Choose from a virtually endless library of curated golf scenarios. Create a truly bespoke experience for your golfing needs.</p>
+                <p className="text-[16px] lg:text-[18px] leading-[150%] text-deep-black/70 m-0">Choose from a virtually endless library of curated golf scenarios. Create a truly bespoke experience for your golfing needs.</p>
             </div>
             
             {/* Right Section - Golf Course Illustration */}
-            <div className="flex pt-6 px-6 lg:pr-6 basis-1/2 min-h-[240px] relative">
+            <div className="flex pt-6 px-3 lg:pr-6 basis-1/2 min-h-[240px] relative">
                 <div
                     className="absolute top-6 right-6"
                     style={{

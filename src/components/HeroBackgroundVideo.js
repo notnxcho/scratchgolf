@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import HeroPill from './HeroPill'
 import Button from './Button'
 import ArrowDiagonal from './icons/ArrowDiagonal'
@@ -8,6 +8,27 @@ import heroVideo from '../assets/hero.mp4'
 import trackmanLogo from '../assets/trackmanlogo.png'
 
 const HeroBackgroundVideo = () => {
+  const [resizeTrigger, setResizeTrigger] = useState(0)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setResizeTrigger(prev => prev + 1)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const viewportWidth = useMemo(() => {
+    if (typeof window === 'undefined') return 1440
+    return window.innerWidth
+  }, [resizeTrigger])
+
+  const scaleX = useMemo(() => {
+    return viewportWidth / 1440
+  }, [viewportWidth])
+
   return (
     <div className='relative w-screen h-[calc(100vh-80px)] md:h-[calc(100vh-20px)] 2xl:h-[calc(100vh-40px)] flex flex-col items-center justify-center overflow-hidden'>
       {/* Video Background */}
@@ -55,6 +76,24 @@ const HeroBackgroundVideo = () => {
           <img src={trackmanLogo} alt="Trackman" className='h-[14px] w-auto' />
         </div>
       </div>
+      <svg 
+        width="1440" 
+        height="120" 
+        style={{
+          position: 'absolute', 
+          bottom: 0, 
+          left: 0,
+          transform: `scaleX(${scaleX})`,
+          transformOrigin: 'left center'
+        }} 
+        viewBox="0 0 1440 120" 
+        fill="none" 
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M0 0C310 0 321.5 120 720 120C1118.5 120 1117 1.52588e-05 1440 0V120H720H0V0Z" fill="white"/>
+      </svg>
+
+
     </div>
   )
 }

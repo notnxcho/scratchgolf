@@ -3,19 +3,21 @@ import { useLocation } from 'react-router-dom'
 import SEO from '../components/SEO'
 import Navbar from '../components/Navbar'
 // import Hero from '../components/Hero'
-import HeroScrollVideo from '../components/HeroScrollVideo'
+// import HeroScrollVideo from '../components/HeroScrollVideo'
 import FilmRoll from '../components/FilmRoll'
-import FeaturesSection from '../components/FeaturesSection'
+// import FeaturesSection from '../components/FeaturesSection'
 import ServicesSection from '../components/ServicesSection'
 import PlansSection from '../components/PlansSection'
 import ScrollSection from '../components/ScrollSection'
 import TestimonialsSection from '../components/TestimonialsSection'
 import ContactSection from '../components/ContactSection'
 import FAQSection from '../components/FAQSection'
-import GradualBlur from '../components/reactbits/GradualBlur'
+// import GradualBlur from '../components/reactbits/GradualBlur'
 import Footer from '../components/Footer'
 import HeroBackgroundVideo from '../components/HeroBackgroundVideo'
 import FeaturesSectionAlt from '../components/FeaturesSectionAlt'
+import GameModesSection from '../components/GameModesSection'
+import TrackmanTechSection from '../components/TrackmanTechSection'
 
 const Home = () => {
   const location = useLocation()
@@ -50,9 +52,12 @@ const Home = () => {
       <HeroBackgroundVideo />
       {/* <FilmRoll /> */}
       
-      <FeaturesSection />
+      {/* <FeaturesSection /> */}
       <FeaturesSectionAlt/>
+      <GameModesSection />
       <ServicesSection />
+
+      <TrackmanTechSection />
       <ScrollSection />
       <PlansSection />
       <FilmRoll />
@@ -60,7 +65,7 @@ const Home = () => {
       <ContactSection />
       <FAQSection />
       <Footer />
-      <GradualBlur
+      {/* <GradualBlur
         target="page"
         position="bottom"
         height="6rem"
@@ -69,7 +74,7 @@ const Home = () => {
         curve="bezier"
         exponential={true}
         opacity={1}
-      />
+      /> */}
     </div>
   )
 }

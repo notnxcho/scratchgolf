@@ -1,15 +1,19 @@
 const PricingCard = () => {
     return (
-        <div className="flex flex-row md:flex-col items-center justify-center gap-3 min-w-[200px] md:w-[200px] lg:h-[312px]">
+        <div className="flex flex-row md:flex-col items-center justify-center gap-3 min-w-[200px] w-full md:w-[200px] md:h-[312px]">
             {/* OPEN 24/7 Card */}
-            <div className="flex flex-col items-center justify-center h-[82px] rounded-[12px] bg-white shadow-[0_4px_16px_0_rgba(0,0,0,0.04)] p-4 lg:p-5 w-full md:w-full">
-                <div className="text-[24px] md:text-[32px] leading-[120%] font-bold text-transparent bg-clip-text w-full text-left bg-gradient-to-r from-[#96EFD1] to-[#026262]">
+            <div className="
+                flex flex-col items-center justify-center
+                h-[240px] md:h-[82px] w-full md:w-full 
+                rounded-[12px] bg-white shadow-[0_4px_16px_0_rgba(0,0,0,0.04)] p-4 lg:p-5
+            ">
+                <div className="text-[24px] md:text-[32px] leading-[120%] font-bold text-transparent bg-clip-text w-full text-left bg-gradient-to-r from-[#96EFD1] to-[#026262] text-center">
                     OPEN 24/7
                 </div>
             </div>
             
             {/* Golf Club & Pricing Card */}
-            <div className="flex flex-col-reverse items-center flex-grow max-h-[calc(100% - 82px - 12px)] rounded-[12px] bg-white shadow-[0_4px_16px_0_rgba(0,0,0,0.04)] w-full overflow-hidden">
+            <div className="flex flex-col-reverse items-center flex-grow h-[240px] md:max-h-[calc(100%-82px-12px)] rounded-[12px] bg-white shadow-[0_4px_16px_0_rgba(0,0,0,0.04)] w-full overflow-hidden">
                 
                 {/* Pricing Information */}
                 <div className="flex flex-col items-center gap-0.5 w-full pb-6">

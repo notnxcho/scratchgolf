@@ -70,7 +70,7 @@ const Navbar = () => {
         ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100' 
         : 'bg-transparent'
     } ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
-      <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1160px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[72px] lg:h-[80px]">
           
           {/* Logo */}
@@ -91,12 +91,12 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className="ml-6 flex items-baseline space-x-8">
               {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => navigateToSection(item.href)}
-                  className={`px-3 py-2 text-sm font-medium transition-colors duration-300 ${
+                  className={`px-3 py-2 text-[16px] font-medium transition-colors duration-300 ${
                     isScrolled 
                       ? 'text-gray-700 hover:text-primary-green' 
                       : 'text-white/80 hover:text-white'

@@ -1,5 +1,7 @@
 import React from 'react'
 import heroSimVideo from '../assets/herosimshort.mp4'
+import Button from './Button'
+import ArrowDiagonal from './icons/ArrowDiagonal'
 
 const HeroAlt = () => {
   return (
@@ -17,10 +19,34 @@ const HeroAlt = () => {
       </video>
 
       {/* Gradient overlay for better text readability */}
-      <div className='absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-deep-black/70 sm:from-deep-black/90 via-deep-black/50 sm:via-deep-black/70 to-transparent pointer-events-none z-0' />
+      <div 
+        className='absolute inset-0 pointer-events-none z-0 sm:hidden'
+        style={{
+          background: 'linear-gradient(to top, rgba(27, 30, 28, 0.9), rgba(27, 30, 28, 0.7), transparent)'
+        }}
+      />
+      <div 
+        className='absolute inset-0 pointer-events-none z-0 hidden sm:block'
+        style={{
+          background: 'linear-gradient(to right, rgba(27, 30, 28, 0.9), rgba(27, 30, 28, 0.7), transparent)'
+        }}
+      />
+      {/* <div 
+        className='absolute inset-0 pointer-events-none z-0'
+        style={{
+          background: 'linear-gradient(to bottom, rgba(15, 25, 23, 0.7), rgba(15, 25, 23, 0.5), transparent)'
+        }}
+      />
+      <div 
+        className='absolute inset-0 pointer-events-none z-0 hidden sm:block'
+        style={{
+          background: 'linear-gradient(to right, rgba(15, 25, 23, 0.9), rgba(15, 25, 23, 0.7), transparent)'
+        }}
+      /> */}
+
 
       {/* Left Side - Text Content */}
-      <div className='text-center sm:text-left relative z-10 w-full max-w-[1080px] mx-auto flex flex-col justify-center px-4 sm:px-6 lg:px-8 h-full'>
+      <div className='text-center sm:text-left relative z-10 w-full max-w-[1160px] mx-auto flex flex-col justify-end pb-[88px] sm:pb-0 sm:justify-center px-4 sm:px-6 lg:px-8 h-full'>
         <div className='flex flex-col gap-6 md:gap-8 max-w-2xl'>
           {/* Main Heading */}
           <h1 className='text-[48px] md:text-[64px] lg:text-[80px] 2xl:text-[96px] font-bold text-white leading-[110%] tracking-tight'>
@@ -30,23 +56,26 @@ const HeroAlt = () => {
           
           {/* Subtitle */}
           <p className='text-[18px] md:text-[20px] lg:text-[22px] text-white/90 max-w-[600px] leading-relaxed'>
-            Fully autonomous indoor golf sim. Formula for a better game.
+            Fully autonomous indoor golf simulator. Creating a formula for a better game.
           </p>
           
           {/* Buttons */}
           <div className='flex flex-col sm:flex-row gap-4 mt-4'>
-            <a
+            <Button 
+              icon={<ArrowDiagonal stroke="white" strokeWidth="1.5" />} 
               href="/book/reservation"
-              className='inline-flex items-center justify-center px-8 py-4 bg-gradient-to-b from-primary-green to-primary-green-light hover:from-primary-green-dark hover:to-primary-green text-white font-semibold text-[18px] rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl'
+              className='w-full sm:w-auto text-center sm:text-left !gap-0 sm:!gap-4 pl-[62px] sm:pl-5'
             >
               BOOK NOW
-            </a>
-            <a
+            </Button>
+            <Button 
+              variant="transparent"
+              icon={null}
               href="/book/reservation"
-              className='inline-flex items-center justify-center px-8 py-4 border-2 border-primary-green text-white hover:bg-primary-green/30 hover:text-white font-semibold text-[18px] rounded-lg transition-all duration-200'
+              className='w-full sm:w-auto h-[62px] text-center sm:text-left'
             >
               LESSONS
-            </a>
+            </Button>
           </div>
         </div>
       </div>

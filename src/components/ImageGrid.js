@@ -1,7 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 import venue1 from '../assets/venue1.jpeg'
 import venue2 from '../assets/venue2.jpeg'
 import venue3 from '../assets/venue3.jpeg'
@@ -9,53 +6,26 @@ import venue4 from '../assets/venue4.jpeg'
 import venue5 from '../assets/venue5.jpeg'
 import venue6 from '../assets/venue6.jpeg'
 
-const FilmRoll = ({ behavior = 'smooth' }) => {
+const ImageGrid = () => {
     const [isOverlayOpen, setIsOverlayOpen] = useState(false)
     const [overlayIndex, setOverlayIndex] = useState(0)
     const touchStartX = useRef(0)
     const touchEndX = useRef(0)
     
-    const originalImages = [venue1, venue2, venue3, venue4, venue5, venue6]
-    
-    // Duplicate images for seamless infinite loop
-    const images = [...originalImages, ...originalImages, ...originalImages]
-    
-    // Configure slider settings based on behavior
-    const sliderSettings = {
-        infinite: true,
-        autoplay: true,
-        autoplaySpeed: behavior === 'smooth' ? 50 : 2000, // Smooth: small pause for continuous effect, Snappy: pause between slides
-        speed: behavior === 'smooth' ? 5000 : 800, // Smooth: much slower transition for continuous feel, Snappy: faster discrete transitions
-        slidesToShow: 3, // Show multiple images at once
-        slidesToScroll: 1, // Scroll one at a time
-        arrows: false,
-        dots: false,
-        pauseOnHover: false,
-        pauseOnFocus: false,
-        pauseOnDotsHover: false,
-        cssEase: behavior === 'smooth' ? 'linear' : 'ease-in-out',
-        swipe: false,
-        touchMove: false,
-        draggable: false,
-        fade: false,
-        variableWidth: false, // Fixed width for consistent spacing
-        centerMode: false,
-        adaptiveHeight: false,
-        rtl: false,
-    }
+    const images = [venue1, venue2, venue3, venue4, venue5, venue6]
     
     const handleImageClick = (index) => {
-        setOverlayIndex(index % originalImages.length)
+        setOverlayIndex(index)
         setIsOverlayOpen(true)
     }
     
     // Navigation functions
     const goToPrevious = () => {
-        setOverlayIndex((prev) => (prev - 1 + originalImages.length) % originalImages.length)
+        setOverlayIndex((prev) => (prev - 1 + images.length) % images.length)
     }
     
     const goToNext = () => {
-        setOverlayIndex((prev) => (prev + 1) % originalImages.length)
+        setOverlayIndex((prev) => (prev + 1) % images.length)
     }
     
     const closeOverlay = () => {
@@ -73,9 +43,9 @@ const FilmRoll = ({ behavior = 'smooth' }) => {
             if (e.key === 'Escape') {
                 setIsOverlayOpen(false)
             } else if (e.key === 'ArrowLeft') {
-                setOverlayIndex((prev) => (prev - 1 + originalImages.length) % originalImages.length)
+                setOverlayIndex((prev) => (prev - 1 + images.length) % images.length)
             } else if (e.key === 'ArrowRight') {
-                setOverlayIndex((prev) => (prev + 1) % originalImages.length)
+                setOverlayIndex((prev) => (prev + 1) % images.length)
             }
         }
         
@@ -84,7 +54,7 @@ const FilmRoll = ({ behavior = 'smooth' }) => {
             window.removeEventListener('keydown', handleKeyDown)
             document.body.style.overflow = ''
         }
-    }, [isOverlayOpen, originalImages.length])
+    }, [isOverlayOpen, images.length])
     
     // Touch handlers for swipe
     const handleTouchStart = (e) => {
@@ -125,44 +95,24 @@ const FilmRoll = ({ behavior = 'smooth' }) => {
     
     return (
         <>
-            <style>{`
-                .slick-slider {
-                    width: 100vw;
-                }
-                
-                .slick-list {
-                    overflow: visible;
-                }
-                
-                .slick-track {
-                    display: flex;
-                    align-items: center;
-                }
-                
-                .slick-slide {
-                    width: 424px !important; /* 400px image + 24px gap (12px padding each side) */
-                    padding: 0 12px;
-                    margin-right: 0;
-                }
-                
-                .slick-slide > div {
-                    display: flex;
-                    justify-content: center;
-                }
-            `}</style>
-            
-            <div className="flex items-center justify-center overflow-hidden w-screen flex-grow flex-shrink-0">
-                <Slider {...sliderSettings} className="w-full">
-                    {images.map((image, index) => (
-                        <div key={index}>
+            <div className="w-full py-16 px-4 md:px-8 lg:px-16 bg-[#f8f8f8]">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6">
+                        {images.map((image, index) => (
                             <div
-                                className="w-[400px] h-[300px] rounded-[12px] overflow-hidden bg-cover bg-center bg-no-repeat cursor-pointer mx-auto"
-                                style={{ backgroundImage: `url(${image})` }}
+                                key={index}
+                                className="relative aspect-[4/3] rounded-lg overflow-hidden cursor-pointer group"
                                 onClick={() => handleImageClick(index)}
-                            />
-                        </div>
-                    ))}
-                </Slider>
+                            >
+                                <div
+                                    className="w-full h-full bg-cover bg-center bg-no-repeat transition-transform duration-300 group-hover:scale-105"
+                                    style={{ backgroundImage: `url(${image})` }}
+                                />
+                                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300" />
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
             
             {isOverlayOpen && (
@@ -207,7 +157,7 @@ const FilmRoll = ({ behavior = 'smooth' }) => {
                     </button>
                     
                     <img
-                        src={originalImages[overlayIndex]}
+                        src={images[overlayIndex]}
                         alt={`Venue ${overlayIndex + 1}`}
                         className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg select-none"
                         draggable={false}
@@ -215,7 +165,7 @@ const FilmRoll = ({ behavior = 'smooth' }) => {
                     />
                     
                     <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm bg-black bg-opacity-50 px-3 py-1 rounded-full">
-                        {overlayIndex + 1} / {originalImages.length}
+                        {overlayIndex + 1} / {images.length}
                     </div>
                 </div>
             )}
@@ -223,4 +173,5 @@ const FilmRoll = ({ behavior = 'smooth' }) => {
     )
 }
 
-export default FilmRoll
+export default ImageGrid
+

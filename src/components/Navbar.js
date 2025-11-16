@@ -75,12 +75,17 @@ const Navbar = () => {
           
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center">
+            <Link to="/" className="flex items-center gap-2">
               <img 
                 src={isScrolled ? LogoColor : LogoWhite} 
                 alt="Scratch Golf Logo" 
                 className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg object-cover transition-opacity duration-300"
               />
+              <span className={`text-xl lg:text-2xl font-bold transition-colors duration-300 ${
+                isScrolled ? 'text-gray-900' : 'text-white'
+              }`}>
+                ScratchLab™
+              </span>
             </Link>
           </div>
 

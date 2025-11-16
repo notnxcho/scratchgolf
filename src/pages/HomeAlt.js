@@ -20,7 +20,7 @@ import GameModesSection from '../components/GameModesSection'
 import TrackmanTechSection from '../components/TrackmanTechSection'
 import HeroBackgroundVideo from '../components/HeroBackgroundVideo'
 
-const Home = () => {
+const HomeAlt = () => {
   const location = useLocation()
 
   // Handle hash navigation when coming from other routes
@@ -50,8 +50,8 @@ const Home = () => {
       <Navbar />
       {/* <Hero /> */}
       {/* <HeroScrollVideo /> */}
-      {/* <HeroAlt /> */}
-      <HeroBackgroundVideo />
+      <HeroAlt />
+      {/* <HeroBackgroundVideo /> */}
       {/* <FeaturesSection /> */}
       <FeaturesSectionAlt/>
       <GameModesSection />
@@ -78,4 +78,5 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomeAlt
+

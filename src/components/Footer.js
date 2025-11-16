@@ -73,9 +73,9 @@ const Footer = () => {
                   className="h-12 w-auto mb-2"
                   draggable="false"
                 />
-                <h2 className="text-3xl lg:text-4xl font-bold text-white uppercase tracking-wider hidden lg:block">
-                  SCRATCH LAB
-                </h2>
+                <span className="text-3xl lg:text-4xl font-bold text-white">
+                  ScratchLab™
+                </span>
             </div>
             <Link to="/book/reservation" className="bg-white hover:bg-gray-200 text-black px-8 py-3 rounded-lg font-medium transition-colors duration-200 w-fit">
               Book now
@@ -153,12 +153,6 @@ const Footer = () => {
           </div>
 
           {/* Explore */}
-          <div>
-            <h3 className="text-gray-300 font-medium mb-4">Explore</h3>
-            <ul className="space-y-2">
-              {/* <li><a href="#" className="text-white hover:text-gray-300 transition-colors">Gallery</a></li> */}
-            </ul>
-          </div>
         </div>
 
         {/* Bottom Section */}

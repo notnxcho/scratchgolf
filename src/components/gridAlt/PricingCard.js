@@ -18,16 +18,13 @@ const PricingCard = () => {
             <div className="flex flex-col-reverse items-center flex-grow h-[240px] md:max-h-[calc(100%-82px-12px)] rounded-[12px] bg-white shadow-[0_4px_16px_0_rgba(0,0,0,0.04)] w-full overflow-hidden">
                 
                 {/* Pricing Information */}
-                <div className="flex flex-col items-center gap-0.5 w-full pb-4">
+                <div className="flex flex-col items-center gap-0.5 w-full pb-6">
                     <p className="text-[14px] text-deep-black/70">Starting at</p>
                     <div className="flex items-baseline gap-1">
                         <span className="text-[32px] font-bold text-deep-black">30</span>
                         <span className="text-[16px] font-bold text-deep-black">USD</span>
                     </div>
-                    <p className="text-[14px] text-deep-black/70 mb-3">30 min session</p>
-                    <Button variant="squared" className="w-full" href="/book/reservation">
-                        Book Now
-                    </Button>
+                    <p className="text-[14px] text-deep-black/70">30 min session</p>
                 </div>
 
                 {/* Golf Club Image */}

@@ -7,7 +7,7 @@ const FeaturesSectionAlt = () => {
     return (
         <div
             id="about"
-            className="w-screen min-h-screen flex flex-col items-center gap-16 py-12 lg:py-[120px] bg-gradient-to-b from-[#fff] to-[#f2f2f2]"
+            className="w-screen flex flex-col items-center gap-16 py-12 lg:py-[120px] bg-gradient-to-b from-[#fff] to-[#f2f2f2]"
         >
             <SectionHeader 
                 title="Golf around the clock and on demand" 

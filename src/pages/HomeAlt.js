@@ -50,8 +50,8 @@ const HomeAlt = () => {
       <Navbar />
       {/* <Hero /> */}
       {/* <HeroScrollVideo /> */}
-      <HeroAlt />
-      {/* <HeroBackgroundVideo /> */}
+      {/* <HeroAlt /> */}
+      <HeroBackgroundVideo />
       {/* <FeaturesSection /> */}
       <FeaturesSectionAlt/>
       <GameModesSection />

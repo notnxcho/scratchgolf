@@ -43,7 +43,7 @@ const HeroAlt = () => {
             </a>
             <a
               href="/book/reservation"
-              className='inline-flex items-center justify-center px-8 py-4 border-2 border-primary-green text-primary-green hover:bg-primary-green hover:text-white font-semibold text-[18px] rounded-lg transition-all duration-200'
+              className='inline-flex items-center justify-center px-8 py-4 border-2 border-primary-green text-white hover:bg-primary-green/30 hover:text-white font-semibold text-[18px] rounded-lg transition-all duration-200'
             >
               LESSONS
             </a>

@@ -8,9 +8,14 @@ module.exports = {
     extend: {
       colors: {
         'deep-black': '#030014',
+        'primary-green': {
+          DEFAULT: '#047857',
+          light: '#059669',
+          dark: '#065F46',
+        },
       },
       backgroundImage: {
-        'highlight-green': 'linear-gradient(180deg, #12AF9A 0%, #15CBB3 100%)',
+        'highlight-green': 'linear-gradient(180deg, #047857 0%, #059669 100%)',
       },
     },
   },

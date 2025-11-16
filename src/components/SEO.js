@@ -6,7 +6,8 @@ const SEO = ({
   keywords = "indoor golf simulator, Trackman, golf training, PGA instruction, Walnut Creek golf, golf lessons, golf simulator bay",
   image = "/logo512.png",
   url = "https://scratchlabgolf.com",
-  type = "website"
+  type = "website",
+  robots = "index, follow"
 }) => {
   const fullTitle = title.includes("Scratch Lab Golf") ? title : `${title} | Scratch Lab Golf`
   
@@ -46,9 +47,9 @@ const SEO = ({
     updateMetaTag('description', description)
     updateMetaTag('keywords', keywords)
     updateMetaTag('author', 'Scratch Lab Golf')
-    updateMetaTag('robots', 'index, follow')
-    updateMetaTag('theme-color', '#12AF9A')
-    updateMetaTag('msapplication-TileColor', '#12AF9A')
+    updateMetaTag('robots', robots)
+    updateMetaTag('theme-color', '#047857')
+    updateMetaTag('msapplication-TileColor', '#047857')
     updateMetaTag('apple-mobile-web-app-capable', 'yes')
     updateMetaTag('apple-mobile-web-app-status-bar-style', 'default')
     updateMetaTag('apple-mobile-web-app-title', 'Scratch Lab Golf')
@@ -132,7 +133,7 @@ const SEO = ({
     script.textContent = JSON.stringify(structuredData)
     document.head.appendChild(script)
     
-  }, [fullTitle, description, keywords, image, url, type])
+  }, [fullTitle, description, keywords, image, url, type, robots])
   
   return null
 }

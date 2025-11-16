@@ -13,7 +13,7 @@ const Book = () => {
 
   // Set active tab based on URL parameter
   useEffect(() => {
-    if (tab && ['reservation', 'event', 'membership'].includes(tab)) {
+    if (tab && ['reservation', 'event', 'prepaid', 'membership'].includes(tab)) {
       setActiveTab(tab)
     } else {
       // Default to reservation if no valid tab
@@ -24,9 +24,13 @@ const Book = () => {
   // Load and initialize widgets when tab changes
   useEffect(() => {
     const loadWidget = async () => {
-      // Clear previous widget content
+      // Clear previous widget content - do this for all tabs
       if (widgetRef.current) {
         widgetRef.current.innerHTML = ''
+        // Remove any child nodes that might persist
+        while (widgetRef.current.firstChild) {
+          widgetRef.current.removeChild(widgetRef.current.firstChild)
+        }
       }
 
       if (activeTab === 'reservation') {
@@ -59,6 +63,12 @@ const Book = () => {
               "termsEnabled": true,
               "codeEnabled": false,
               "customFormFields":[{
+                "type": "textfield",
+                "labelText": "Phone Number",
+                "required": true,
+                "errorText": "Please enter your phone number",
+                "inputWidth": "auto/span 1"
+              },{
                 "type": "textarea",
                 "labelText": "Address",
                 "required": true,
@@ -70,13 +80,13 @@ const Book = () => {
                   "acceptText": "I accept the terms and conditions, privacy policy, and waiver of liability.",
                   "urls":[{
                     "text": "terms and conditions",
-                    "url": "/legal/terms"
+                    "url": "/terms"
                   },{
                     "text": "privacy policy",
-                    "url": "/legal/privacy"
+                    "url": "/privacy"
                   },{
                     "text": "waiver of liability",
-                    "url": "/legal/liability"
+                    "url": "/waiver-of-liability"
                   }]
                 },
                 "subscriptions":{
@@ -110,35 +120,7 @@ const Book = () => {
                   "selectResourceTitle": "",
                   "anyResourceOption": ""
                 },{
-                  "serviceId": "36d624d4-88a7-49d6-8afc-89ad49631471",
-                  "title": "",
-                  "description": "",
-                  "hideResourcePicker": false,
-                  "selectResourceTitle": "",
-                  "anyResourceOption": ""
-                },{
-                  "serviceId": "6e388075-3417-4cda-ad3f-2f3bc4588a98",
-                  "title": "",
-                  "description": "",
-                  "hideResourcePicker": false,
-                  "selectResourceTitle": "",
-                  "anyResourceOption": ""
-                },{
-                  "serviceId": "0b2b062a-ffd6-4e27-8423-e54ea2f10729",
-                  "title": "",
-                  "description": "",
-                  "hideResourcePicker": false,
-                  "selectResourceTitle": "",
-                  "anyResourceOption": ""
-                },{
-                  "serviceId": "5db1cd00-dbe2-4fb5-8072-06863e44b6d4",
-                  "title": "",
-                  "description": "",
-                  "hideResourcePicker": false,
-                  "selectResourceTitle": "",
-                  "anyResourceOption": ""
-                },{
-                  "serviceId": "5dfdeae1-c686-4a91-b0f7-393a7ce157fb",
+                  "serviceId": "0368b030-c55b-4748-8744-c8deeb669183",
                   "title": "",
                   "description": "",
                   "hideResourcePicker": false,
@@ -175,22 +157,103 @@ const Book = () => {
           script.async = true
           document.head.appendChild(script)
         }
-      } else if (activeTab === 'membership') {
-        // Load Typeform for membership
-        if (widgetRef.current) {
-          widgetRef.current.innerHTML = '<div data-tf-live="01K7BQH959GWGF8D5Y6EFF1XNC"></div>'
+      } else if (activeTab === 'prepaid') {
+        // Load Bookla subscription widget for pre-paid packages
+        try {
+          // Load the Bookla script if not already loaded (v1.1.1 for subscription widget)
+          const scriptId = 'bookla-subscription-widget-script'
+          let script = document.getElementById(scriptId)
           
-          // Remove existing Typeform script to force reload
-          const existingScript = document.querySelector('script[src*="embed.typeform.com"]')
-          if (existingScript) {
-            existingScript.remove()
+          if (!script) {
+            script = document.createElement('script')
+            script.id = scriptId
+            script.src = 'https://bookla.pages.dev/booking-widget-standalone-v1.1.1.global.js'
+            script.async = true
+            document.head.appendChild(script)
+            
+            // Wait for script to load
+            await new Promise((resolve, reject) => {
+              script.onload = resolve
+              script.onerror = reject
+            })
+          } else if (!window.BookingWidgetStandalone) {
+            // Script element exists but not loaded yet, wait for it
+            await new Promise((resolve, reject) => {
+              script.onload = resolve
+              script.onerror = reject
+            })
           }
-          
-          // Load Typeform script
-          const script = document.createElement('script')
-          script.src = '//embed.typeform.com/next/embed.js'
-          script.async = true
-          document.head.appendChild(script)
+
+          // Initialize the subscription widget
+          if (window.BookingWidgetStandalone && widgetRef.current) {
+            window.BookingWidgetStandalone.initSubscriptionWidget(widgetRef.current, {
+              "apiKey": "oEwJ3Wdm3A2UDSMxG1tynDk59zuUA1eLjpd9",
+              "region": "US",
+              "companyId": "59971f2d-4659-473d-8e67-2bf27fc62971",
+              "transitionType": "slide",
+              "guestEnabled": true,
+              "termsEnabled": true,
+              "customFormFields":[{
+                "type": "text",
+                "labelText": "Phone Number",
+                "required": true,
+                "errorText": "Please enter your address",
+                "inputWidth": "auto/span 1"
+              },{
+                "type": "textarea",
+                "labelText": "Address",
+                "required": true,
+                "errorText": "Please enter your address",
+                "inputWidth": "auto/span 1"
+              }],
+              "localization":{
+                "terms":{
+                  "urls":[{
+                    "text": "terms and conditions",
+                    "url": "/terms"
+                  },{
+                    "text": "privacy policy",
+                    "url": "/privacy"
+                  },{
+                    "text": "waiver of liability",
+                    "url": "/waiver-of-liability"
+                  }]
+                },
+                "subscriptions":{
+                  "title": "Choose Pre-Paid Plan",
+                  "subtitle": "Select an hour pack",
+                  "summaryTitle": "Pre-Paid Pack Summary",
+                  "noSubscriptions": "No pre-paid packs available"
+                }
+              },
+              "subscriptionsConfig":{
+                "subscriptions":[{
+                  "subscriptionId": "1cf42f4b-709e-4770-a5a6-04ea1b1fcd60",
+                  "title": "5 Hour Pack",
+                  "description": "5 pre-paid hours. No expiration. Includes 2 free guest tickets."
+                },{
+                  "subscriptionId": "d005b303-b64e-4625-b211-463fa8541dd0",
+                  "title": "10 Hour Pack",
+                  "description": "10 pre-paid hours. No expiration. Includes 4 free guest tickets."
+                },{
+                  "subscriptionId": "06bdfb8a-37a5-45be-a136-fdbd7c359358",
+                  "title": "15 Hour Pack",
+                  "description": "15 pre-paid hours. No expiration. Includes 8 free guest tickets."
+                }]
+              }
+            })
+          }
+        } catch (error) {
+          console.error('Failed to initialize the Bookla subscription widget:', error)
+        }
+      } else if (activeTab === 'membership') {
+        // Membership cards - no widget needed
+        // Ensure widget container is completely cleared
+        if (widgetRef.current) {
+          widgetRef.current.innerHTML = ''
+          while (widgetRef.current.firstChild) {
+            widgetRef.current.removeChild(widgetRef.current.firstChild)
+          }
         }
       }
     }
@@ -208,10 +271,90 @@ const Book = () => {
   const tabs = [
     { id: 'reservation', label: 'Reservation' },
     { id: 'event', label: 'Event' },
+    { id: 'prepaid', label: 'Pre-Paid Package' },
     { id: 'membership', label: 'Membership' }
   ]
 
+  const membershipPlans = [
+    {
+      id: 'bronze',
+      title: 'Monthly Unlimited – Bronze',
+      price: '$399',
+      perks: [
+        '24/7',
+        'Unlimited Visits',
+        '1 Hour Max Per Day, $40 Per Additional Hour',
+        '2 Free Guest Tickets Per Month',
+        'Incredible Savings',
+        'Access to member\'s only simulator and golf gym'
+      ],
+      link: 'https://buy.stripe.com/3cI7sL2Ghg929CMaxtgQE07'
+    },
+    {
+      id: 'silver',
+      title: 'Monthly Unlimited – Silver',
+      price: '$499',
+      perks: [
+        '24/7',
+        'Unlimited Visits',
+        '2 Hour Max Per Day, $35 Per Additional Hour',
+        '4 Free Guest Tickets Per Month',
+        'Incredible Savings',
+        'Access to member\'s only simulator and golf gym'
+      ],
+      link: 'https://buy.stripe.com/28E5kD3Klf4YeX60WTgQE08'
+    },
+    {
+      id: 'gold',
+      title: 'Monthly Unlimited – Gold',
+      price: '$599',
+      perks: [
+        '24/7',
+        'Unlimited Visits',
+        '3 Hour Max Per Day, $30 Per Additional Hour',
+        '8 Free Guest Tickets Per Month',
+        'Incredible Savings',
+        'Access to member\'s only simulator and golf gym'
+      ],
+      link: 'https://buy.stripe.com/28E5kD3Klf4YeX60WTgQE08'
+    }
+  ]
+
   const renderWidget = () => {
+    if (activeTab === 'membership') {
+      return (
+        <div className="p-6 md:p-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {membershipPlans.map((plan) => (
+              <div
+                key={plan.id}
+                className="bg-white border-2 border-gray-200 rounded-xl p-6 flex flex-col shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{plan.title}</h3>
+                <div className="text-3xl font-bold text-primary-green mb-6">{plan.price}</div>
+                <ul className="flex-1 space-y-3 mb-6">
+                  {plan.perks.map((perk, index) => (
+                    <li key={index} className="text-sm text-gray-700 flex items-start">
+                      <span className="text-primary-green mr-2">•</span>
+                      <span>{perk}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={plan.link}
+                  className="w-full bg-gradient-to-b from-primary-green to-primary-green-light text-white font-semibold py-3 px-6 rounded-lg text-center hover:opacity-90 transition-opacity shadow-md"
+                >
+                  Join
+                </a>
+                <p className="text-xs text-gray-500 text-center mt-4">
+                  We will follow up with your membership code via email.
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
     return <div ref={widgetRef} className="w-screen min-h-[500px] md:w-[600px]"></div>
   }
 
@@ -234,7 +377,7 @@ const Book = () => {
                 onClick={() => handleTabChange(tabItem.id)}
                 className={`px-3 py-2 md:px-6 md:py-3 rounded-md font-semibold transition-all duration-200 ${
                   activeTab === tabItem.id
-                    ? 'bg-gradient-to-b from-[#12AF9A] to-[#15CBB3] text-white shadow-md'
+                    ? 'bg-gradient-to-b from-primary-green to-primary-green-light text-white shadow-md'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                 }`}
               >
@@ -245,7 +388,10 @@ const Book = () => {
         </div>
 
         {/* Widget Container */}
-        <div className="bg-white rounded-2xl shadow-lg min-h-[500px] w-screen md:w-[600px]">
+        <div 
+          key={activeTab}
+          className={`bg-white rounded-2xl shadow-lg min-h-[500px] ${activeTab === 'membership' ? 'w-full max-w-6xl' : 'w-screen md:w-[600px]'}`}
+        >
           {renderWidget()}
         </div>
       </div>

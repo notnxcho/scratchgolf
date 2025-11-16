@@ -8,11 +8,11 @@ const Button = ({ children, icon, className, variant = "default", size = "defaul
     let buttonClasses = ''
     
     if (variant === "squared") {
-        buttonClasses = `flex items-center justify-center px-6 py-3 text-white text-center font-semibold rounded-lg text-sm bg-gradient-to-b from-[#12AF9A] to-[#15CBB3] shadow-[0_4px_12px_0_rgba(0,205,177,0.3)] hover:shadow-[0_6px_16px_0_rgba(0,205,177,0.4)] transition-all duration-200 ${className}`
+        buttonClasses = `flex items-center justify-center px-6 py-3 text-white text-center font-semibold rounded-lg text-sm bg-gradient-to-b from-primary-green to-primary-green-light shadow-[0_4px_12px_0_rgba(4,120,87,0.3)] hover:shadow-[0_6px_16px_0_rgba(4,120,87,0.4)] transition-all duration-200 ${className}`
     } else if (variant === "transparent") {
         buttonClasses = `flex ${containerSize} items-center justify-between gap-3 text-white text-center font-bold rounded-[40px] ${textSize} bg-transparent border border-white/50 hover:border-white transition-all duration-200 ${className}`
     } else {
-        buttonClasses = `flex ${containerSize} items-center justify-between gap-3 text-white text-center font-bold rounded-[40px] ${textSize} bg-gradient-to-b from-[#12AF9A] to-[#15CBB3] shadow-[0_0_0_4px_rgba(41,233,208,0.6),0_10px_16px_-6px_rgba(0,205,177,0.2),0_4px_24px_0_rgba(0,0,0,0.1)] ${className}`
+        buttonClasses = `flex ${containerSize} items-center justify-between gap-3 text-white text-center font-bold rounded-[40px] ${textSize} bg-gradient-to-b from-primary-green to-primary-green-light shadow-[0_0_0_4px_rgba(4,120,87,0.6),0_10px_16px_-6px_rgba(4,120,87,0.2),0_4px_24px_0_rgba(0,0,0,0.1)] ${className}`
     }
 
     const buttonContent = variant === "squared" ? children : (

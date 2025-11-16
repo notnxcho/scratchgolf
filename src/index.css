@@ -19,7 +19,7 @@ code {
 
 /* Text highlight with gradient mask */
 .text-highlight {
-  background: linear-gradient(180deg, #12AF9A 0%, #15CBB3 100%);
+  background: linear-gradient(180deg, #047857 0%, #059669 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

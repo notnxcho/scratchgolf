@@ -17,7 +17,7 @@ const FeaturesSection = () => {
                     <Map />
                     <div className="flex flex-row lg:flex-col items-center justify-center min-w-full lg:min-w-[200px] lg:w-[200px] gap-4 h-[200px] lg:h-[480px]">
                         <div className="flex flex-col items-center justify-center w-full h-[200px] min-h-[200px] bg-white rounded-[12px] bg-white">
-                            <div className="flex flex-col items-center bg-gradient-to-b from-[#026262] to-[#96EFD1] bg-clip-text p-6">
+                            <div className="flex flex-col items-center bg-gradient-to-b from-primary-green-dark to-primary-green-light bg-clip-text p-6">
                                 <span className="text-transparent select-none text-[80px] font-bold mt-[-4px]">24</span>
                                 <p className="text-[16px] lg:text-[20px] font-medium text-deep-black leading-[120%] text-center text-transparent select-none">Hours a day. 7 days a week.</p>
                             </div>

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Book from './pages/Reserve'
 import Legal from './pages/Legal'
+import NotFound from './pages/NotFound'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/reserve" element={<Book />} />
           <Route path="/legal/:tab" element={<Legal />} />
           <Route path="/legal" element={<Legal />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>

@@ -104,7 +104,7 @@ const Legal = () => {
             
             <p>To verify your identity and protect your personal information, we may require you to provide additional information, such as your full name, email address, postal address, or recent transaction history. We will respond to all verifiable requests in accordance with applicable law within the required timeframe (typically 45 days).</p>
             
-            <p><strong>Do Not Sell or Share My Personal Information:</strong> To exercise your right to opt-out of the "sale" or "sharing" of your personal information, please click <a href="mailto:privacy@scratchlabgolf.com?subject=Do Not Sell or Share My Personal Information" className="text-[#12AF9A] hover:underline">here</a> or contact us using the methods above.</p>
+            <p><strong>Do Not Sell or Share My Personal Information:</strong> To exercise your right to opt-out of the "sale" or "sharing" of your personal information, please click <a href="mailto:privacy@scratchlabgolf.com?subject=Do Not Sell or Share My Personal Information" className="text-primary-green hover:underline">here</a> or contact us using the methods above.</p>
             
             <p><strong>Authorized Agents:</strong> If you are an authorized agent submitting a request on behalf of a California resident, you must provide a copy of your signed permission from the consumer and verify your own identity. We may also require the consumer to directly verify their identity and/or confirm that they gave you permission to submit the request.</p>
             
@@ -253,7 +253,7 @@ const Legal = () => {
                 onClick={() => handleTabChange(tabItem.id)}
                 className={`px-3 py-2 md:px-6 md:py-3 rounded-md font-semibold transition-all duration-200 ${
                   activeTab === tabItem.id
-                    ? 'bg-gradient-to-b from-[#12AF9A] to-[#15CBB3] text-white shadow-md'
+                    ? 'bg-gradient-to-b from-primary-green to-primary-green-light text-white shadow-md'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                 }`}
               >

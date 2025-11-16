@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import Logo from '../assets/svg-iso-color.svg'
+import LogoWhite from '../assets/svg-iso-white.svg'
+import LogoColor from '../assets/svg-iso-color.svg'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -70,15 +71,15 @@ const Navbar = () => {
         : 'bg-transparent'
     } ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14 lg:h-18">
+        <div className="flex items-center justify-between h-[72px] lg:h-[80px]">
           
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
               <img 
-                src={Logo} 
+                src={isScrolled ? LogoColor : LogoWhite} 
                 alt="Scratch Golf Logo" 
-                className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg object-cover"
+                className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg object-cover transition-opacity duration-300"
               />
             </Link>
           </div>
@@ -90,8 +91,10 @@ const Navbar = () => {
                 <button
                   key={item.name}
                   onClick={() => navigateToSection(item.href)}
-                  className={`px-3 py-2 text-sm font-medium transition-colors duration-300 hover:text-[#12AF9A] ${
-                    isScrolled ? 'text-gray-700' : 'text-deep-black/50'
+                  className={`px-3 py-2 text-sm font-medium transition-colors duration-300 ${
+                    isScrolled 
+                      ? 'text-gray-700 hover:text-primary-green' 
+                      : 'text-white/80 hover:text-white'
                   }`}
                 >
                   {item.name}
@@ -103,7 +106,15 @@ const Navbar = () => {
           {/* CTA Button & Mobile Menu Button */}
           <div className="flex items-center space-x-4">
             {/* Reserve Button */}
-            <Link to="/book/reservation" className="hidden sm:inline-flex items-center text-[#12AF9A] hover:text-[#0F9A87] font-semibold text-[14px] lg:text-[18px] bg-transparent p-0 m-0 transition-colors duration-200" style={{ width: 'auto' }}>
+            <Link 
+              to="/book/reservation" 
+              className={`hidden sm:inline-flex items-center font-semibold text-[14px] lg:text-[18px] bg-transparent p-0 m-0 transition-colors duration-200 ${
+                isScrolled 
+                  ? 'text-primary-green hover:text-primary-green-dark' 
+                  : 'text-white hover:text-white/80'
+              }`} 
+              style={{ width: 'auto' }}
+            >
               Reserve Now
               <svg className="ml-1" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {/* Iconoir: ArrowRight */}
@@ -117,7 +128,7 @@ const Navbar = () => {
               className={`lg:hidden inline-flex items-center justify-center p-2 rounded-md transition-colors duration-300 ${
                 isScrolled 
                   ? 'text-gray-700 hover:text-gray-900 hover:bg-gray-100' 
-                  : 'text-deep-black hover:text-gray-300 hover:bg-white/10'
+                  : 'text-white hover:text-white/80 hover:bg-white/10'
               }`}
             >
               <span className="sr-only">Open main menu</span>
@@ -149,13 +160,13 @@ const Navbar = () => {
                 navigateToSection(item.href)
                 setIsMobileMenuOpen(false)
               }}
-              className="block w-full text-left px-3 py-2 text-[16px] font-medium text-gray-700 hover:text-[#12AF9A] hover:bg-gray-50 rounded-md transition-colors duration-300"
+              className="block w-full text-left px-3 py-2 text-[16px] font-medium text-gray-700 hover:text-primary-green hover:bg-gray-50 rounded-md transition-colors duration-300"
             >
               {item.name}
             </button>
           ))}
           <div className="px-3 py-2">
-            <Link to="/book/reservation" className="inline-flex items-center text-[#12AF9A] hover:text-[#0F9A87] font-semibold text-[16px] bg-transparent p-0 m-0 transition-colors duration-200" style={{ width: 'auto' }} onClick={() => setIsMobileMenuOpen(false)}>
+            <Link to="/book/reservation" className="inline-flex items-center text-primary-green hover:text-primary-green-dark font-semibold text-[16px] bg-transparent p-0 m-0 transition-colors duration-200" style={{ width: 'auto' }} onClick={() => setIsMobileMenuOpen(false)}>
               Reserve Now
               <svg className="ml-1" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {/* Iconoir: ArrowRight */}

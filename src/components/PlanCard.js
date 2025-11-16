@@ -14,7 +14,7 @@ const PlanCard = ({
             {/* Best Value Tag */}
             {isBestValue && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-gradient-to-b from-[#12AF9A] to-[#15CBB3] text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
+                    <div className="bg-gradient-to-b from-primary-green to-primary-green-light text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
                         Best Value
                     </div>
                 </div>
@@ -34,7 +34,7 @@ const PlanCard = ({
             <div className="mb-8 space-y-3">
                 {features.map((feature, index) => (
                     <div key={index} className="flex items-center gap-3">
-                        <div className="w-2 h-2 bg-gradient-to-b from-[#12AF9A] to-[#15CBB3] rounded-full"></div>
+                        <div className="w-2 h-2 bg-gradient-to-b from-primary-green to-primary-green-light rounded-full"></div>
                         <span className="text-gray-700 text-sm">{feature}</span>
                     </div>
                 ))}

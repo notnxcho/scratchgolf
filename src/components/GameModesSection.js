@@ -16,7 +16,7 @@ const GameModesSection = () => {
                 <div className="flex flex-col md:flex-row items-center justify-center w-full flex-wrap lg:flex-nowrap gap-3">
                     <GameModeCard 
                         title="Play courses"
-                        description="Play golf on some of the best and most iconic courses around the world"
+                        description="Play golf on some of the world's best and most iconic courses"
                         src={gamemodeCourse}
                     />
                     <GameModeCard 

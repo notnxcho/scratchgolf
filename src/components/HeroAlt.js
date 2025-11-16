@@ -17,13 +17,13 @@ const HeroAlt = () => {
       </video>
 
       {/* Gradient overlay for better text readability */}
-      <div className='absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-deep-black/70 sm:from-deep-black via-deep-black/50 sm:via-deep-black/70 to-transparent pointer-events-none z-0' />
+      <div className='absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-deep-black/70 sm:from-deep-black/90 via-deep-black/50 sm:via-deep-black/70 to-transparent pointer-events-none z-0' />
 
       {/* Left Side - Text Content */}
       <div className='text-center sm:text-left relative z-10 w-full max-w-[1080px] mx-auto flex flex-col justify-center px-4 sm:px-6 lg:px-8 h-full'>
         <div className='flex flex-col gap-6 md:gap-8 max-w-2xl'>
           {/* Main Heading */}
-          <h1 className='text-[48px] md:text-[64px] lg:text-[80px] xl:text-[96px] font-bold text-white leading-[110%] tracking-tight'>
+          <h1 className='text-[48px] md:text-[64px] lg:text-[80px] 2xl:text-[96px] font-bold text-white leading-[110%] tracking-tight'>
             <div>24/7 GOLF</div>
             <div>STUDIO</div>
           </h1>

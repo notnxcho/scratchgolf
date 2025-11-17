@@ -245,13 +245,13 @@ const Legal = () => {
         />
 
         {/* Tab Navigation */}
-        <div className="flex justify-center">
-          <div className="bg-white rounded-lg space-x-1 md:space-x-2 p-1 shadow-lg border border-gray-200">
+        <div className="flex justify-center w-full">
+          <div className="bg-white rounded-lg space-x-1 md:space-x-2 p-1 shadow-lg border border-gray-200 flex items-center justify-center flex-wrap w-full md:w-auto">
             {tabs.map((tabItem) => (
               <button
                 key={tabItem.id}
                 onClick={() => handleTabChange(tabItem.id)}
-                className={`px-3 py-2 md:px-6 md:py-3 rounded-md font-semibold transition-all duration-200 ${
+                className={`px-3 py-2 md:px-6 md:py-3 rounded-md font-semibold transition-all duration-200 flex-shrink-0 min-w-max flex-grow ${
                   activeTab === tabItem.id
                     ? 'bg-gradient-to-b from-primary-green to-primary-green-light text-white shadow-md'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'

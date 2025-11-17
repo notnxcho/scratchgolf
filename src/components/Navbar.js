@@ -84,7 +84,7 @@ const Navbar = () => {
               <span className={`text-xl lg:text-2xl font-bold transition-colors duration-300 ${
                 isScrolled ? 'text-gray-900' : 'text-white'
               }`}>
-                ScratchLab™
+                SCRATCHLAB™
               </span>
             </Link>
           </div>

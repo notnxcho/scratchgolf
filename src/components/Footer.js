@@ -69,12 +69,12 @@ const Footer = () => {
             <div className="flex items-center gap-2">
                 <img
                   src={require('../assets/svg-iso-white.svg').default}
-                  alt="SCRATCH LAB ISO Logo"
+                  alt="SCRATCHLAB ISO Logo"
                   className="h-12 w-auto mb-2"
                   draggable="false"
                 />
                 <span className="text-3xl lg:text-4xl font-bold text-white">
-                  ScratchLab™
+                  SCRATCHLAB™
                 </span>
             </div>
             <Link to="/book/reservation" className="bg-white hover:bg-gray-200 text-black px-8 py-3 rounded-lg font-medium transition-colors duration-200 w-fit">

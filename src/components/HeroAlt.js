@@ -28,7 +28,7 @@ const HeroAlt = () => {
       <div 
         className='absolute inset-0 pointer-events-none z-0 hidden sm:block'
         style={{
-          background: 'linear-gradient(to right, rgba(27, 30, 28, 0.9), rgba(27, 30, 28, 0.7), transparent)'
+          background: 'linear-gradient(to top, rgba(27, 30, 28, 0.9), rgba(27, 30, 28, 0.7), transparent)'
         }}
       />
       {/* <div 
@@ -46,7 +46,7 @@ const HeroAlt = () => {
 
 
       {/* Left Side - Text Content */}
-      <div className='text-center sm:text-left relative z-10 w-full max-w-[1160px] mx-auto flex flex-col justify-end pb-[128px] sm:pb-0 sm:justify-center px-4 sm:px-6 lg:px-8 h-full'>
+      <div className='text-center relative z-10 w-full max-w-[1160px] mx-auto flex flex-col justify-end items-center pb-[128px] sm:pb-0 sm:justify-center px-4 sm:px-6 lg:px-8 h-full'>
         <div className='flex flex-col gap-6 md:gap-8 max-w-2xl'>
           {/* Main Heading */}
           <h1 className='text-[48px] md:text-[64px] lg:text-[80px] 2xl:text-[96px] font-bold text-white leading-[110%] tracking-tight'>
@@ -60,7 +60,7 @@ const HeroAlt = () => {
           </p>
           
           {/* Buttons */}
-          <div className='flex flex-col sm:flex-row gap-4 mt-4'>
+          <div className='flex flex-col justify-center items-center sm:flex-row gap-4 mt-4'>
             <Button 
               icon={<ArrowDiagonal stroke="white" strokeWidth="1.5" />} 
               href="/book/reservation"

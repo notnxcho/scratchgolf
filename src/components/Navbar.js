@@ -91,7 +91,7 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:block">
-            <div className="ml-6 flex items-baseline space-x-8">
+            <div className=" flex items-baseline space-x-8">
               {navItems.map((item) => (
                 <button
                   key={item.name}

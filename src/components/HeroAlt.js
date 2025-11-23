@@ -5,7 +5,7 @@ import ArrowDiagonal from './icons/ArrowDiagonal'
 
 const HeroAlt = () => {
   return (
-    <div className='relative w-screen h-screen md:h-screen 2xl:h-[calc(100vh-40px)] flex items-center bg-deep-black overflow-hidden'>
+    <div className='relative w-screen  h-[calc(100vh-80px)] md:h-screen 2xl:h-[calc(100vh-40px)] flex items-center bg-deep-black overflow-hidden'>
       {/* Single Video Background */}
       <video
         className='absolute inset-0 w-full h-full object-cover'
@@ -46,7 +46,7 @@ const HeroAlt = () => {
 
 
       {/* Left Side - Text Content */}
-      <div className='text-center relative z-10 w-full max-w-[1160px] mx-auto flex flex-col justify-end items-center pb-[128px] sm:pb-0 sm:justify-center px-4 sm:px-6 lg:px-8 h-full'>
+      <div className='text-center relative z-10 w-full h-full max-w-[1160px] mx-auto flex flex-col justify-end items-center pb-[48px] sm:pb-0 sm:justify-center px-4 sm:px-6 lg:px-8'>
         <div className='flex flex-col gap-6 md:gap-8 max-w-2xl'>
           {/* Main Heading */}
           <h1 className='text-[48px] md:text-[64px] lg:text-[80px] 2xl:text-[96px] font-bold text-white leading-[110%] tracking-tight'>

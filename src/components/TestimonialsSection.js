@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import SplitText from './reactbits/SplitText'
 import SectionHeader from './SectionHeader'
+import useFadeInAnimation from '../hooks/useFadeInAnimation'
 
 const TestimonialContent = ({ testimonial, useSplitText = false, isCurrent = false }) => {
   return (
@@ -82,6 +83,7 @@ const TestimonialsSection = () => {
   const intervalRef = useRef(null)
   const touchStartX = useRef(null)
   const touchEndX = useRef(null)
+  const [contentRef, isContentVisible] = useFadeInAnimation()
 
   const testimonials = [
     {
@@ -182,7 +184,15 @@ const TestimonialsSection = () => {
         />
         
         <div 
-          className="relative"
+          ref={contentRef}
+          className="relative transition-all duration-500 ease-out"
+          style={{
+            opacity: isContentVisible ? 1 : 0,
+            transform: isContentVisible ? 'translateY(0)' : 'translateY(90px)'
+          }}
+        >
+          <div 
+            className="relative"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onTouchStart={handleTouchStart}
@@ -218,6 +228,7 @@ const TestimonialsSection = () => {
               />
             ))}
           </div>
+        </div>
         </div>
       </div>
     </section>

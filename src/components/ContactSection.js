@@ -1,8 +1,10 @@
 import React from 'react'
 import SectionHeader from './SectionHeader'
 import { Mail, Phone, MapPin, ShoppingBag } from 'iconoir-react'
+import useFadeInAnimation from '../hooks/useFadeInAnimation'
 
 const ContactSection = () => {
+    const [contentRef, isContentVisible] = useFadeInAnimation()
   const contactMethods = [
     {
       icon: <Mail className="w-6 h-6" />,
@@ -39,7 +41,14 @@ const ContactSection = () => {
       />
       
       {/* Contact Methods Grid */}
-      <div className="w-full max-w-[1200px] px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div 
+        ref={contentRef}
+        className="w-full max-w-[1200px] px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 transition-all duration-500 ease-out"
+        style={{
+            opacity: isContentVisible ? 1 : 0,
+            transform: isContentVisible ? 'translateY(0)' : 'translateY(90px)'
+        }}
+      >
         {contactMethods.map((method, index) => (
           <div key={index} className="flex flex-col items-center text-center gap-4">
             {/* Icon Container */}

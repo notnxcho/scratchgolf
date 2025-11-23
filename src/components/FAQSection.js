@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import SectionHeader from './SectionHeader'
 import Accordion from './Accordion'
+import useFadeInAnimation from '../hooks/useFadeInAnimation'
 
 const FAQSection = () => {
+    const [contentRef, isContentVisible] = useFadeInAnimation()
   const [openIndex, setOpenIndex] = useState(null)
 
   const faqs = [
@@ -53,7 +55,14 @@ const FAQSection = () => {
       />
       
       {/* FAQ Accordion */}
-      <div className="w-full max-w-[800px] px-4">
+      <div 
+        ref={contentRef}
+        className="w-full max-w-[800px] px-4 transition-all duration-500 ease-out"
+        style={{
+            opacity: isContentVisible ? 1 : 0,
+            transform: isContentVisible ? 'translateY(0)' : 'translateY(90px)'
+        }}
+      >
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           {faqs.map((faq, index) => (
             <Accordion

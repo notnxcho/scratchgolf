@@ -1,8 +1,11 @@
 import SectionHeader from "./SectionHeader"
 import TrackmanIOCard from "./grid/TrackmanIOCard"
 import Ball from "./grid/Ball"
+import useFadeInAnimation from "../hooks/useFadeInAnimation"
 
 const TrackmanTechSection = () => {
+    const [contentRef, isContentVisible] = useFadeInAnimation()
+
     return (
         <div className="w-screen flex flex-col items-center gap-8 lg:gap-16 pt-12 lg:pt-[120px] bg-[radial-gradient(farthest-side_at_top,#292929,#101012_50%)] bg-[length:300%_100%] md:bg-[length:100%_100%]">
             <SectionHeader 
@@ -11,7 +14,14 @@ const TrackmanTechSection = () => {
                 theme="dark"
             />
 
-            <div className="flex flex-col md:flex-row items-center justify-center gap-3 w-full px-3 max-w-[924px]">
+            <div 
+                ref={contentRef}
+                className="flex flex-col md:flex-row items-center justify-center gap-3 w-full px-3 max-w-[924px] transition-all duration-500 ease-out"
+                style={{
+                    opacity: isContentVisible ? 1 : 0,
+                    transform: isContentVisible ? 'translateY(0)' : 'translateY(90px)'
+                }}
+            >
                 <div className="w-full md:flex-1">
                     <TrackmanIOCard />
                 </div>

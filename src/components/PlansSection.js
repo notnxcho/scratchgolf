@@ -1,7 +1,9 @@
 import SectionHeader from "./SectionHeader"
 import PlanCard from "./PlanCard"
+import useFadeInAnimation from "../hooks/useFadeInAnimation"
 
 const PlansSection = () => {
+    const [contentRef, isContentVisible] = useFadeInAnimation()
     const plans = [
         {
             title: "SIMULATOR ACCESS",
@@ -55,7 +57,14 @@ const PlansSection = () => {
             />
             
             {/* Plans Grid */}
-            <div className="w-full max-w-[1200px] px-4 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 lg:gap-6">
+            <div 
+                ref={contentRef}
+                className="w-full max-w-[1200px] px-4 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 lg:gap-6 transition-all duration-500 ease-out"
+                style={{
+                    opacity: isContentVisible ? 1 : 0,
+                    transform: isContentVisible ? 'translateY(0)' : 'translateY(90px)'
+                }}
+            >
                 {plans.map((plan, index) => (
                     <PlanCard
                         key={index}

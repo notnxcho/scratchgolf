@@ -231,9 +231,42 @@ const Legal = () => {
     }
   }
 
+  const getSEOTitle = () => {
+    switch (activeTab) {
+      case 'privacy':
+        return 'Privacy Policy'
+      case 'terms':
+        return 'Terms of Service'
+      case 'liability':
+        return 'Waiver of Liability'
+      default:
+        return 'Legal Information'
+    }
+  }
+
+  const getSEODescription = () => {
+    switch (activeTab) {
+      case 'privacy':
+        return 'Privacy Policy for Scratch Lab Golf. Learn how we collect, use, and protect your personal information.'
+      case 'terms':
+        return 'Terms of Service for Scratch Lab Golf. Review our terms and conditions for using our facilities and services.'
+      case 'liability':
+        return 'Waiver of Liability for Scratch Lab Golf. Important information about risks and liability when using our facilities.'
+      default:
+        return 'Legal documents and policies for Scratch Lab Golf including privacy policy, terms of service, and liability waiver.'
+    }
+  }
+
   return (
     <div className='w-screen min-h-screen flex flex-col items-center bg-[#f8f8f8]'>
-      <SEO />
+      <SEO 
+        title={getSEOTitle()}
+        description={getSEODescription()}
+        keywords="privacy policy, terms of service, liability waiver, Scratch Lab Golf legal"
+        image="/og-image-home.jpg"
+        url={`https://scratchlabgolf.com/legal/${activeTab}`}
+        robots="noindex, follow"
+      />
       <Navbar />
       
       {/* Main Content */}

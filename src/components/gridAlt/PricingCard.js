@@ -1,5 +1,3 @@
-import Button from '../Button'
-
 const PricingCard = () => {
     return (
         <div className="flex flex-row md:flex-col items-center justify-center gap-3 min-w-[200px] w-full md:w-[200px] md:h-[312px]">

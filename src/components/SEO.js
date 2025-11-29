@@ -1,15 +1,27 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 
 const SEO = ({ 
   title = "Scratch Lab Golf - Indoor Golf Simulator & Training",
   description = "Professional indoor golf simulator with Trackman technology. Book sessions, get PGA-level instruction, and improve your game 24/7 at our Walnut Creek location.",
   keywords = "indoor golf simulator, Trackman, golf training, PGA instruction, Walnut Creek golf, golf lessons, golf simulator bay",
-  image = "/logo512.png",
+  image = "/og-image-home.jpg",
   url = "https://scratchlabgolf.com",
   type = "website",
   robots = "index, follow"
 }) => {
   const fullTitle = title.includes("Scratch Lab Golf") ? title : `${title} | Scratch Lab Golf`
+  
+  // Ensure image URL is absolute
+  const absoluteImageUrl = useMemo(() => {
+    return image.startsWith('http') 
+      ? image 
+      : `https://scratchlabgolf.com${image.startsWith('/') ? image : '/' + image}`
+  }, [image])
+  
+  // Ensure URL is absolute
+  const absoluteUrl = useMemo(() => {
+    return url.startsWith('http') ? url : `https://scratchlabgolf.com${url.startsWith('/') ? url : '/' + url}`
+  }, [url])
   
   useEffect(() => {
     // Update document title
@@ -56,22 +68,26 @@ const SEO = ({
     
     // Open Graph / Facebook
     updateMetaTag('og:type', type, true)
-    updateMetaTag('og:url', url, true)
+    updateMetaTag('og:url', absoluteUrl, true)
     updateMetaTag('og:title', fullTitle, true)
     updateMetaTag('og:description', description, true)
-    updateMetaTag('og:image', image, true)
+    updateMetaTag('og:image', absoluteImageUrl, true)
+    updateMetaTag('og:image:width', '1200', true)
+    updateMetaTag('og:image:height', '630', true)
+    updateMetaTag('og:image:type', 'image/jpeg', true)
     updateMetaTag('og:site_name', 'Scratch Lab Golf', true)
     updateMetaTag('og:locale', 'en_US', true)
     
     // Twitter
     updateMetaTag('twitter:card', 'summary_large_image', true)
-    updateMetaTag('twitter:url', url, true)
+    updateMetaTag('twitter:url', absoluteUrl, true)
     updateMetaTag('twitter:title', fullTitle, true)
     updateMetaTag('twitter:description', description, true)
-    updateMetaTag('twitter:image', image, true)
+    updateMetaTag('twitter:image', absoluteImageUrl, true)
+    updateMetaTag('twitter:image:alt', fullTitle, true)
     
     // Canonical URL
-    updateLinkTag('canonical', url)
+    updateLinkTag('canonical', absoluteUrl)
     
     // Structured Data
     const structuredData = {
@@ -133,7 +149,7 @@ const SEO = ({
     script.textContent = JSON.stringify(structuredData)
     document.head.appendChild(script)
     
-  }, [fullTitle, description, keywords, image, url, type, robots])
+  }, [fullTitle, description, keywords, type, robots, absoluteImageUrl, absoluteUrl])
   
   return null
 }

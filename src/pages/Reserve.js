@@ -360,7 +360,13 @@ const Book = () => {
 
   return (
     <div className='w-screen min-h-screen flex flex-col items-center bg-[#f8f8f8]'>
-      <SEO />
+      <SEO 
+        title="Book a Time - Reserve Your Golf Session"
+        description="Book your indoor golf simulator session at Scratch Lab Golf. Choose from reservations, events, pre-paid packages, or memberships. Available 24/7 in Walnut Creek, CA."
+        keywords="book golf simulator, reserve golf bay, golf booking, Walnut Creek golf reservation, indoor golf booking"
+        image="/og-image-home.jpg"
+        url="https://scratchlabgolf.com/book"
+      />
       <Navbar />
       
       {/* Main Content */}

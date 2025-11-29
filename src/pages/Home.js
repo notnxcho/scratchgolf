@@ -18,7 +18,7 @@ import HeroAlt from '../components/HeroAlt'
 import FeaturesSectionAlt from '../components/FeaturesSectionAlt'
 import GameModesSection from '../components/GameModesSection'
 import TrackmanTechSection from '../components/TrackmanTechSection'
-import HeroBackgroundVideo from '../components/HeroBackgroundVideo'
+// import HeroBackgroundVideo from '../components/HeroBackgroundVideo'
 
 const Home = () => {
   const location = useLocation()
@@ -64,16 +64,6 @@ const Home = () => {
       <ContactSection />
       <FAQSection />
       <Footer />
-      {/* <GradualBlur
-        target="page"
-        position="bottom"
-        height="6rem"
-        strength={2}
-        divCount={4}
-        curve="bezier"
-        exponential={true}
-        opacity={1}
-      /> */}
     </div>
   )
 }

@@ -13,7 +13,7 @@ const Book = () => {
 
   // Set active tab based on URL parameter
   useEffect(() => {
-    if (tab && ['reservation', 'event', 'prepaid', 'membership'].includes(tab)) {
+    if (tab && ['reservation', /* 'event', */ 'prepaid', 'membership', 'giftcard'].includes(tab)) {
       setActiveTab(tab)
     } else {
       // Default to reservation if no valid tab
@@ -140,23 +140,23 @@ const Book = () => {
         } catch (error) {
           console.error('Failed to initialize Bookla widget:', error)
         }
-      } else if (activeTab === 'event') {
-        // Load Typeform for events
-        if (widgetRef.current) {
-          widgetRef.current.innerHTML = '<div data-tf-live="01K7BQWT8R0EER4PYVFHD9ZH2R"></div>'
-          
-          // Remove existing Typeform script to force reload
-          const existingScript = document.querySelector('script[src*="embed.typeform.com"]')
-          if (existingScript) {
-            existingScript.remove()
-          }
-          
-          // Load Typeform script
-          const script = document.createElement('script')
-          script.src = '//embed.typeform.com/next/embed.js'
-          script.async = true
-          document.head.appendChild(script)
-        }
+      // } else if (activeTab === 'event') {
+      //   // Load Typeform for events
+      //   if (widgetRef.current) {
+      //     widgetRef.current.innerHTML = '<div data-tf-live="01K7BQWT8R0EER4PYVFHD9ZH2R"></div>'
+      //     
+      //     // Remove existing Typeform script to force reload
+      //     const existingScript = document.querySelector('script[src*="embed.typeform.com"]')
+      //     if (existingScript) {
+      //       existingScript.remove()
+      //     }
+      //     
+      //     // Load Typeform script
+      //     const script = document.createElement('script')
+      //     script.src = '//embed.typeform.com/next/embed.js'
+      //     script.async = true
+      //     document.head.appendChild(script)
+      //   }
       } else if (activeTab === 'prepaid') {
         // Load Bookla subscription widget for pre-paid packages
         try {
@@ -255,6 +255,59 @@ const Book = () => {
             widgetRef.current.removeChild(widgetRef.current.firstChild)
           }
         }
+      } else if (activeTab === 'giftcard') {
+        // Load Bookla gift card widget
+        try {
+          // Load the Bookla script if not already loaded (v1.1.2 for gift card widget)
+          const scriptId = 'bookla-giftcard-widget-script'
+          let script = document.getElementById(scriptId)
+          
+          if (!script) {
+            script = document.createElement('script')
+            script.id = scriptId
+            script.src = 'https://bookla.pages.dev/booking-widget-standalone-v1.1.2.global.js'
+            script.async = true
+            document.head.appendChild(script)
+            
+            // Wait for script to load
+            await new Promise((resolve, reject) => {
+              script.onload = resolve
+              script.onerror = reject
+            })
+          } else if (!window.BookingWidgetStandalone) {
+            // Script element exists but not loaded yet, wait for it
+            await new Promise((resolve, reject) => {
+              script.onload = resolve
+              script.onerror = reject
+            })
+          }
+
+          // Initialize the gift card widget
+          if (window.BookingWidgetStandalone && widgetRef.current) {
+            window.BookingWidgetStandalone.initGiftCardWidget(widgetRef.current, {
+              "apiKey": "oEwJ3Wdm3A2UDSMxG1tynDk59zuUA1eLjpd9",
+              "region": "US",
+              "companyId": "59971f2d-4659-473d-8e67-2bf27fc62971",
+              "transitionType": "slide",
+              "guestEnabled": true,
+              "termsEnabled": false,
+              "customFormFields": [],
+              "localization": {
+                "terms": {
+                  "urls": [{
+                    "text": "terms and conditions",
+                    "url": "/terms"
+                  }]
+                }
+              },
+              "giftCardsConfig": {
+                "giftCards": []
+              }
+            })
+          }
+        } catch (error) {
+          console.error('Failed to initialize the Bookla gift card widget:', error)
+        }
       }
     }
 
@@ -270,9 +323,10 @@ const Book = () => {
 
   const tabs = [
     { id: 'reservation', label: 'Reservation' },
-    { id: 'event', label: 'Event' },
+    // { id: 'event', label: 'Event' },
     { id: 'prepaid', label: 'Pre-Paid Package' },
-    { id: 'membership', label: 'Membership' }
+    { id: 'membership', label: 'Membership' },
+    { id: 'giftcard', label: 'Gift Card' }
   ]
 
   const membershipPlans = [

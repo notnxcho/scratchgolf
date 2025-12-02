@@ -247,13 +247,93 @@ const Book = () => {
           console.error('Failed to initialize the Bookla subscription widget:', error)
         }
       } else if (activeTab === 'membership') {
-        // Membership cards - no widget needed
-        // Ensure widget container is completely cleared
-        if (widgetRef.current) {
-          widgetRef.current.innerHTML = ''
-          while (widgetRef.current.firstChild) {
-            widgetRef.current.removeChild(widgetRef.current.firstChild)
+        // Load Bookla subscription widget for memberships
+        try {
+          // Load the Bookla script if not already loaded (v1.1.1 for subscription widget)
+          const scriptId = 'bookla-subscription-widget-script'
+          let script = document.getElementById(scriptId)
+          
+          if (!script) {
+            script = document.createElement('script')
+            script.id = scriptId
+            script.src = 'https://bookla.pages.dev/booking-widget-standalone-v1.1.1.global.js'
+            script.async = true
+            document.head.appendChild(script)
+            
+            // Wait for script to load
+            await new Promise((resolve, reject) => {
+              script.onload = resolve
+              script.onerror = reject
+            })
+          } else if (!window.BookingWidgetStandalone) {
+            // Script element exists but not loaded yet, wait for it
+            await new Promise((resolve, reject) => {
+              script.onload = resolve
+              script.onerror = reject
+            })
           }
+
+          // Initialize the subscription widget
+          if (window.BookingWidgetStandalone && widgetRef.current) {
+            window.BookingWidgetStandalone.initSubscriptionWidget(widgetRef.current, {
+              "apiKey": "oEwJ3Wdm3A2UDSMxG1tynDk59zuUA1eLjpd9",
+              "region": "US",
+              "companyId": "59971f2d-4659-473d-8e67-2bf27fc62971",
+              "transitionType": "slide",
+              "guestEnabled": true,
+              "termsEnabled": true,
+              "customFormFields": [{
+                "type": "text",
+                "labelText": "Phone Number",
+                "required": true,
+                "errorText": "Please enter your address",
+                "inputWidth": "auto/span 1"
+              }, {
+                "type": "textarea",
+                "labelText": "Address",
+                "required": true,
+                "errorText": "Please enter your address",
+                "inputWidth": "auto/span 1"
+              }],
+              "localization": {
+                "terms": {
+                  "urls": [{
+                    "text": "terms and conditions",
+                    "url": "/terms"
+                  }, {
+                    "text": "privacy policy",
+                    "url": "/privacy"
+                  }, {
+                    "text": "waiver of liability",
+                    "url": "/waiver-of-liability"
+                  }]
+                },
+                "subscriptions": {
+                  "title": "Choose Membership Tier",
+                  "subtitle": "Select an member",
+                  "summaryTitle": "Membership Summary",
+                  "noSubscriptions": "No memberships available"
+                }
+              },
+              "subscriptionsConfig": {
+                "subscriptions": [{
+                  "subscriptionId": "39a096c9-f607-4300-b098-2197e8fbe574",
+                  "title": "Monthly Unlimited Bronze",
+                  "description": "24/7, unlimited bookings. 1 hour max. per day. $40 per additional hour. 2 free guest tickets per month."
+                }, {
+                  "subscriptionId": "ce9811ad-1834-4aac-b088-1f3ef2264c86",
+                  "title": "Monthly Unlimited Silver",
+                  "description": "24/7, unlimited bookings. 2 hours max. per day. $35 per additional hour. 4 free guest tickets per month"
+                }, {
+                  "subscriptionId": "82677688-7802-4719-9a63-771c2807980e",
+                  "title": "Monthly Unlimited Gold",
+                  "description": "24/7, unlimited bookings. 3 hours max. per day. $30 per additional hour. 8 free guest tickets per month"
+                }]
+              }
+            })
+          }
+        } catch (error) {
+          console.error('Failed to initialize the Bookla subscription widget:', error)
         }
       } else if (activeTab === 'giftcard') {
         // Load Bookla gift card widget
@@ -329,86 +409,8 @@ const Book = () => {
     { id: 'giftcard', label: 'Gift Card' }
   ]
 
-  const membershipPlans = [
-    {
-      id: 'bronze',
-      title: 'Monthly Unlimited – Bronze',
-      price: '$399',
-      perks: [
-        '24/7',
-        'Unlimited Visits',
-        '1 Hour Max Per Day, $40 Per Additional Hour',
-        '2 Free Guest Tickets Per Month',
-        'Incredible Savings',
-        'Access to member\'s only simulator and golf gym'
-      ],
-      link: 'https://buy.stripe.com/3cI7sL2Ghg929CMaxtgQE07'
-    },
-    {
-      id: 'silver',
-      title: 'Monthly Unlimited – Silver',
-      price: '$499',
-      perks: [
-        '24/7',
-        'Unlimited Visits',
-        '2 Hour Max Per Day, $35 Per Additional Hour',
-        '4 Free Guest Tickets Per Month',
-        'Incredible Savings',
-        'Access to member\'s only simulator and golf gym'
-      ],
-      link: 'https://buy.stripe.com/28E5kD3Klf4YeX60WTgQE08'
-    },
-    {
-      id: 'gold',
-      title: 'Monthly Unlimited – Gold',
-      price: '$599',
-      perks: [
-        '24/7',
-        'Unlimited Visits',
-        '3 Hour Max Per Day, $30 Per Additional Hour',
-        '8 Free Guest Tickets Per Month',
-        'Incredible Savings',
-        'Access to member\'s only simulator and golf gym'
-      ],
-      link: 'https://buy.stripe.com/28E5kD3Klf4YeX60WTgQE08'
-    }
-  ]
-
   const renderWidget = () => {
-    if (activeTab === 'membership') {
-      return (
-        <div className="p-6 md:p-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {membershipPlans.map((plan) => (
-              <div
-                key={plan.id}
-                className="bg-white border-2 border-gray-200 rounded-xl p-6 flex flex-col shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{plan.title}</h3>
-                <div className="text-3xl font-bold text-primary-green mb-6">{plan.price}</div>
-                <ul className="flex-1 space-y-3 mb-6">
-                  {plan.perks.map((perk, index) => (
-                    <li key={index} className="text-sm text-gray-700 flex items-start">
-                      <span className="text-primary-green mr-2">•</span>
-                      <span>{perk}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={plan.link}
-                  className="w-full bg-gradient-to-b from-primary-green to-primary-green-light text-white font-semibold py-3 px-6 rounded-lg text-center hover:opacity-90 transition-opacity shadow-md"
-                >
-                  Join
-                </a>
-                <p className="text-xs text-gray-500 text-center mt-4">
-                  We will follow up with your membership code via email.
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      )
-    }
+    // All tabs now use the widget container
     return <div ref={widgetRef} className="w-screen min-h-[500px] md:w-[600px]"></div>
   }
 
@@ -450,7 +452,7 @@ const Book = () => {
         {/* Widget Container */}
         <div 
           key={activeTab}
-          className={`bg-white rounded-2xl shadow-lg min-h-[500px] ${activeTab === 'membership' ? 'w-full max-w-6xl' : 'w-screen md:w-[600px]'}`}
+          className="bg-white rounded-2xl shadow-lg min-h-[500px] w-screen md:w-[600px]"
         >
           {renderWidget()}
         </div>

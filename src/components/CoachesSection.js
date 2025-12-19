@@ -2,7 +2,7 @@ import { useState } from 'react'
 import SectionHeader from "./SectionHeader"
 import CoachCard from "./grid/CoachCard"
 import CoachCardOverlay from "./grid/CoachCardOverlay"
-import { coaches } from "../data/coaches"
+import { coaches } from "../data/coaches.js"
 
 const CoachesSection = () => {
     const [selectedCoach, setSelectedCoach] = useState(null)

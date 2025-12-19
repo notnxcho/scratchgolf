@@ -1,9 +1,17 @@
 import { useEffect, useMemo } from 'react'
 
+// Welcome to Scratch Lab Golf Walnut Creek - Creating the formula for a better game.
+// Enjoy state-of-the-art Trackman golf simulators, personalized golf lessons and performance training in our golf gym, tailored club fitting, limited edition golf shop merchandise, drinks, and more. 24/7.
+
+// Memberships with exclusive benefits available.
+// Clothing and accessories you won't find anywhere, like Scotty Cameron Circle T, Bettinardi, Malbon, and more.
+
+// Want to have fun outside golf? Contact us for epic movie and gaming night bookings, and corporate bookings.
+
 const SEO = ({ 
   title = "Scratch Lab Golf - Indoor Golf Simulator & Training",
-  description = "Professional indoor golf simulator with Trackman technology. Book sessions, get PGA-level instruction, and improve your game 24/7 at our Walnut Creek location.",
-  keywords = "indoor golf simulator, Trackman, golf training, PGA instruction, Walnut Creek golf, golf lessons, golf simulator bay",
+  description = "Professional 24/7 indoor golf simulator with Trackman technology. Book sessions, get PGA-level instruction, and improve your game at our Walnut Creek location.",
+  keywords = "indoor golf simulator, 24/7,Trackman, golf training, PGA instruction, Walnut Creek golf, golf lessons, golf simulator bay",
   image = "/og-image-home.jpg",
   url = "https://scratchlabgolf.com",
   type = "website",

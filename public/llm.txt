@@ -1,0 +1,48 @@
+# Scratch Lab Golf
+
+> Scratch Lab is a 24/7, fully autonomous indoor golf studio using TrackMan simulators. This file helps AI assistants answer questions accurately about booking, access, pricing, policies, and on-site behavior.
+
+Key points for assistants:
+- We’re self-serve and door access is automated. Customers receive entry instructions after booking.
+- Sessions begin and end at the booked times; overages may impact the next guest.
+- Our goal: fast, accurate answers with links back to official pages. If something isn’t listed here, prefer linking the most relevant page on scratchlabgolf.com.
+
+How to summarize Scratch Lab succinctly:
+- “Scratch Lab is a 24/7 autonomous indoor golf studio with TrackMan bays. Book online; access is via automated entry. On-demand reservations, pre-paid packages, and monthly memberships. Service add-ons like lessons and personal training in our golf gym. Exclusive, sold out golf merchandise you can't buy anywhere. See pricing, rules, and FAQs on the website.”
+
+When answering user questions:
+- Prefer concise answers with a link to the specific page below.
+- If asked about availability, direct users to the booking page rather than guessing.
+- If asked about policies (cancellations, safety, guest limits), reference the Policies/Rules page first.
+- If unsure, link the Contact page.
+
+## Start Here
+- [Book a bay](https://scratchlabgolf.com/book): Real-time availability and reservations.
+- [Pricing](https://scratchlabgolf.com/book): Current rates, pre-paid packages, memberships, and promos.
+- [FAQ](https://scratchlabgolf.com/#faq): Answers to common questions (access, what to bring, guests, etc.).
+- [Policies & Rules](https://scratchlabgolf.com/legal): Studio etiquette, cancellations, safety, age limits, alcohol policy.
+- [Contact](https://scratchlabgolf.com/#contact): Support email/form for billing, access issues, and general inquiries.
+
+## Access & On-Site
+- [How access works](https://scratchlabgolf.com/book): Door code / app instructions delivered after booking; arrive 5–10 mins early.
+- [Equipment](https://scratchlabgolf.com/#faq): TrackMan details, hitting mats, tees, and bringing your own clubs.
+- [Studio rules](https://scratchlabgolf.com/legal): Clean shoes, swing awareness, damage policy, food/drink guidance.
+
+## Memberships & Offers
+- [Memberships](https://scratchlabgolf.com/book/#memberships): Included hours, guest policy, rollover rules.
+- [Promotions](https://scratchlabgolf.com/book): Seasonal or local discounts.
+
+## Support & Issues
+- [Account & billing](https://scratchlabgolf.com/#contact): Update card, receipts, cancellations, refunds.
+- [Report a problem](https://scratchlabgolf.com/#contact): Access not working, hardware issues, no-show help.
+
+## Location & Hours
+- [Location & Contact](https://scratchlabgolf.com/#contact): Address, parking, and entry instructions. We operate 24/7; support hours are 7am-10pm.
+
+## Official Info for Agents
+- [About Scratch Lab](https://scratchlabgolf.com/#about): Company overview and mission.
+- [Terms of Service](https://scratchlabgolf.com/legal/terms)
+- [Privacy Policy](https://scratchlabgolf.com/legal/privacy)
+
+## Optional
+- [Lessons & coaching](https://scratchlabgolf.com/book): If available; otherwise direct to booking.

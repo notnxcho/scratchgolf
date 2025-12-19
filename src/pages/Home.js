@@ -18,6 +18,7 @@ import HeroAlt from '../components/HeroAlt'
 import FeaturesSectionAlt from '../components/FeaturesSectionAlt'
 import GameModesSection from '../components/GameModesSection'
 import TrackmanTechSection from '../components/TrackmanTechSection'
+import CoachesSection from '../components/CoachesSection'
 // import HeroBackgroundVideo from '../components/HeroBackgroundVideo'
 
 const Home = () => {
@@ -60,6 +61,7 @@ const Home = () => {
       <ScrollSection />
       <ImageGrid />
       <PlansSection />
+      <CoachesSection/>
       <TestimonialsSection />
       <ContactSection />
       <FAQSection />

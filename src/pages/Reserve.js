@@ -39,7 +39,7 @@ const Book = () => {
           // Load the Bookla script if not already loaded
           if (!window.BookingWidgetStandalone) {
             const script = document.createElement('script')
-            script.src = 'https://bookla.pages.dev/booking-widget-standalone-v1.1.0.global.js'
+            script.src = 'https://bookla.pages.dev/booking-widget-standalone-v1.2.0.global.js'
             script.async = true
             document.head.appendChild(script)
             
@@ -61,7 +61,8 @@ const Book = () => {
               "showServiceSelector": true,
               "guestEnabled": true,
               "termsEnabled": true,
-              "codeEnabled": false,
+              "codeEnabled": true,
+              "addonsEnabled": true,
               "customFormFields":[{
                 "type": "textfield",
                 "labelText": "Phone Number",
@@ -77,59 +78,51 @@ const Book = () => {
               }],
               "localization":{
                 "terms":{
-                  "acceptText": "I accept the terms and conditions, privacy policy, and waiver of liability.",
+                  "acceptText": "I accept the terms and conditions, privacy policy, and waiver of liability. I acknowledge that I will be directly charged for going over my reservation's intended duration.",
                   "urls":[{
                     "text": "terms and conditions",
-                    "url": "/terms"
+                    "url": "/legal/terms"
                   },{
                     "text": "privacy policy",
-                    "url": "/privacy"
+                    "url": "/legal/privacy"
                   },{
                     "text": "waiver of liability",
-                    "url": "/waiver-of-liability"
+                    "url": "/legal/liability"
                   }]
                 },
-                "subscriptions":{
-                  "title": "Choose Membership",
-                  "subtitle": "Select a membership plan",
-                  "summaryTitle": "Membership Summary",
-                  "buyText": "Subscribe",
-                  "noSubscriptions": "No memberships available"
+                "code":{
+                  "fieldLabel": "Pre-Paid or Membership Code"
+                },
+                "addons":{
+                  "title": "Add Guests or Club Rentals"
                 }
               },
               "servicesConfig":{
                 "services":[{
                   "serviceId": "d576a2c3-f330-41a7-9b21-decf19751acd",
                   "title": "",
-                  "description": "",
-                  "hideResourcePicker": false,
-                  "selectResourceTitle": "",
-                  "anyResourceOption": ""
-                },{
-                  "serviceId": "848109ca-81e3-47e6-b17d-f73b5505aa90",
-                  "title": "",
-                  "description": "",
-                  "hideResourcePicker": false,
-                  "selectResourceTitle": "",
-                  "anyResourceOption": ""
-                },{
-                  "serviceId": "5d517c62-5d37-447b-8813-7a555ed00c88",
-                  "title": "",
-                  "description": "",
+                  "description": "Includes 1 complimentary guest.",
                   "hideResourcePicker": false,
                   "selectResourceTitle": "",
                   "anyResourceOption": ""
                 },{
                   "serviceId": "0368b030-c55b-4748-8744-c8deeb669183",
                   "title": "",
-                  "description": "",
+                  "description": "Professional golf instruction for all ages.",
+                  "hideResourcePicker": false,
+                  "selectResourceTitle": "",
+                  "anyResourceOption": ""
+                },{
+                  "serviceId": "5d517c62-5d37-447b-8813-7a555ed00c88",
+                  "title": "",
+                  "description": "Personal training to elevate your strength and flexibility.",
                   "hideResourcePicker": false,
                   "selectResourceTitle": "",
                   "anyResourceOption": ""
                 },{
                   "serviceId": "717b8c1d-94e5-4ec8-961a-cbe3c264c20a",
                   "title": "",
-                  "description": "",
+                  "description": "Don't want to leave your house? Install a Trackman of your own.",
                   "hideResourcePicker": false,
                   "selectResourceTitle": "",
                   "anyResourceOption": ""

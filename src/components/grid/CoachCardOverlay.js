@@ -222,8 +222,19 @@ const CoachCardOverlay = ({ coach, isOpen, onClose }) => {
                     {coach.description}
                 </p>
                 </div>
+                {/* <div className="flex w-full p-6 lg:p-8 bg-white z-10 "> */}
+                    <Button
+                        onClick={() => {
+                            // Navigate to booking page with coach ID
+                            window.location.href = `/reserve?coach=${coach.id}`
+                        }}
+                        className="w-full justify-center mt-8"
+                    >
+                        Book a Lesson
+                    </Button>
+                {/* </div> */}
             </div>
-            <div className="flex w-full p-6 lg:p-8 bg-white z-10 ">
+            {/* <div className="flex w-full p-6 lg:p-8 bg-white z-10 ">
                 <Button
                 onClick={() => {
                     // Navigate to booking page with coach ID
@@ -233,7 +244,7 @@ const CoachCardOverlay = ({ coach, isOpen, onClose }) => {
                 >
                 Book a Lesson
                 </Button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -12,12 +12,12 @@ const PlansSection = () => {
             features: [
                 "400+ virtual courses",
                 "Advanced ball tracking",
-                "Climate-controlled bays",
+                "Includes one complementary guest",
                 "24/7 access",
                 "+ $10/half hour for club rental"
             ],
             buttonText: "Book",
-            disclaimer: "$5 per half hour, for each additional party member."
+            disclaimer: "$10 per half hour, for each additional party member."
         },
         {
             title: "UNLIMITED MEMBERSHIP",

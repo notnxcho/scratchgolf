@@ -11,13 +11,20 @@ const Navbar = () => {
   const location = useLocation()
   const navigate = useNavigate()
 
+  // Check if we're on the home route
+  const isHomeRoute = location.pathname === '/'
+
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
       
-      // Update scrolled state
-      setIsScrolled(currentScrollY > 20)
+      // Update scrolled state - only on home route, otherwise always scrolled
+      if (isHomeRoute) {
+        setIsScrolled(currentScrollY > 20)
+      } else {
+        setIsScrolled(true)
+      }
       
       // Hide/show navbar based on scroll direction
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
@@ -31,9 +38,16 @@ const Navbar = () => {
       setLastScrollY(currentScrollY)
     }
 
+    // Set initial scrolled state based on route
+    if (!isHomeRoute) {
+      setIsScrolled(true)
+    } else {
+      setIsScrolled(window.scrollY > 20)
+    }
+
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [lastScrollY])
+  }, [lastScrollY, location.pathname])
 
   const navItems = [
     { name: 'About', href: '#about' },
@@ -64,11 +78,14 @@ const Navbar = () => {
     }
   }
 
+  // Determine if navbar should be transparent (only on home route when not scrolled)
+  const shouldBeTransparent = isHomeRoute && !isScrolled
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100' 
-        : 'bg-transparent'
+      shouldBeTransparent
+        ? 'bg-transparent' 
+        : 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
     } ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="max-w-[1160px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[72px] lg:h-[80px]">
@@ -77,12 +94,12 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center gap-2">
               <img 
-                src={isScrolled ? LogoColor : LogoWhite} 
+                src={shouldBeTransparent ? LogoWhite : LogoColor} 
                 alt="Scratch Golf Logo" 
                 className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg object-cover transition-opacity duration-300"
               />
               <span className={`text-xl lg:text-2xl font-bold transition-colors duration-300 ${
-                isScrolled ? 'text-gray-900' : 'text-white'
+                shouldBeTransparent ? 'text-white' : 'text-gray-900'
               }`}>
                 SCRATCHLAB™
               </span>
@@ -97,9 +114,9 @@ const Navbar = () => {
                   key={item.name}
                   onClick={() => navigateToSection(item.href)}
                   className={`px-3 py-2 text-[16px] font-medium transition-colors duration-300 ${
-                    isScrolled 
-                      ? 'text-gray-700 hover:text-primary-green' 
-                      : 'text-white/80 hover:text-white'
+                    shouldBeTransparent
+                      ? 'text-white/80 hover:text-white' 
+                      : 'text-gray-700 hover:text-primary-green'
                   }`}
                 >
                   {item.name}
@@ -114,9 +131,9 @@ const Navbar = () => {
             <Link 
               to="/book/reservation" 
               className={`hidden sm:inline-flex items-center font-semibold text-[14px] lg:text-[18px] bg-transparent p-0 m-0 transition-colors duration-200 ${
-                isScrolled 
-                  ? 'text-primary-green hover:text-primary-green-dark' 
-                  : 'text-white hover:text-white/80'
+                shouldBeTransparent
+                  ? 'text-white hover:text-white/80' 
+                  : 'text-primary-green hover:text-primary-green-dark'
               }`} 
               style={{ width: 'auto' }}
             >
@@ -131,9 +148,9 @@ const Navbar = () => {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`lg:hidden inline-flex items-center justify-center p-2 rounded-md transition-colors duration-300 ${
-                isScrolled 
-                  ? 'text-gray-700 hover:text-gray-900 hover:bg-gray-100' 
-                  : 'text-white hover:text-white/80 hover:bg-white/10'
+                shouldBeTransparent
+                  ? 'text-white hover:text-white/80 hover:bg-white/10' 
+                  : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
               }`}
             >
               <span className="sr-only">Open main menu</span>

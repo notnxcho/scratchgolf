@@ -88,24 +88,38 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       id: 1,
-      quote: "Really helpful and friendly staff. The simulators are great and the training is helpful.",
+      quote: "Trackman data changed everything. Finally understand why my slice happens.",
       name: "Sarah Mitchell",
       occupation: "Marketing Director",
       skillLevel: "Handicap 12"
     },
     {
       id: 2,
-      quote: "I noticed a significant improvement in my game after just a few sessions.",
+      quote: "Dropped 5 strokes in two months. The coaches actually know their stuff.",
       name: "Michael Chen",
       occupation: "Software Engineer",
       skillLevel: "Handicap 8"
     },
     {
       id: 3,
-      quote: "I love the training sessions. They are really helpful and the trainers are great.",
+      quote: "Best part? I can practice year-round, even when it's freezing outside.",
       name: "Emily Rodriguez",
       occupation: "Financial Analyst",
       skillLevel: "Handicap 15"
+    },
+    {
+      id: 4,
+      quote: "My swing feels completely different. Worth every penny.",
+      name: "David Park",
+      occupation: "Consultant",
+      skillLevel: "Handicap 6"
+    },
+    {
+      id: 5,
+      quote: "The simulators are insanely accurate. Played Pebble Beach from my living room.",
+      name: "Jessica Thompson",
+      occupation: "Product Manager",
+      skillLevel: "Handicap 10"
     }
   ]
 

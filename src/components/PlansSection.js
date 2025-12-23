@@ -21,7 +21,7 @@ const PlansSection = () => {
         },
         {
             title: "UNLIMITED MEMBERSHIP",
-            price: "Weekly or Monthly",
+            price: "Monthly",
             description: "Unlimited bookings. One price.",
             features: [
                 "Priority booking access",

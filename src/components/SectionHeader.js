@@ -1,12 +1,12 @@
 import useFadeInAnimation from '../hooks/useFadeInAnimation'
 
-const SectionHeader = ({ title, description, theme }) => {
+const SectionHeader = ({ title, description, theme, className }) => {
     const [ref, isVisible] = useFadeInAnimation()
 
     return (
         <div 
             ref={ref}
-            className="flex flex-col items-center justify-center max-w-[400px] lg:max-w-[600px] px-4 text-center gap-4 transition-all duration-500 ease-out"
+            className={`flex flex-col items-center justify-center max-w-[400px] lg:max-w-[600px] px-4 text-center gap-4 transition-all duration-500 ease-out ${className}`}
             style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(-90px)'
